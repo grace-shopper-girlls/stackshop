@@ -1,6 +1,7 @@
 const {expect} = require('chai')
 const db = require('../index')
 const Cart = db.model('cart')
+const AuthUser = db.model('AuthUser')
 
 describe('Cart model', () => {
   beforeEach(() => {
@@ -31,3 +32,36 @@ describe('Cart model', () => {
     })
   })
 })
+
+
+describe('associations', () => {
+
+  it("belongs to a user", async () => {
+
+    const creatingUser = AuthUser.create({
+      firstname: 'cody',
+      email: 'cody@puppybook.com',
+      password: 'bones',
+      imageurl:
+        'https://upload.wikimedia.org/wikipedia/commons/a/a1/A_PUG_dog.jpg',
+      address: '129 E. Ruff Street, Brooklyn, NY'
+    });
+
+    const creatingCart = Cart.create({
+      totalPrice: 74.25
+    });
+
+    const [createdUser, createdCart] = await Promise.all([creatingUser, creatingCart]);
+
+    await createdCart.setAuthUser(createdUser);
+
+    const foundCart = await Cart.findOne({
+      where: { totalPrice: 74.25 },
+      include: { model: AuthUser}
+    });
+
+    expect(foundCart.AuthUser).to.exist; // eslint-disable-line no-unused-expressions
+    expect(foundCart.AuthUser.firstname).to.equal('cody');
+  });
+
+});
