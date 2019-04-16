@@ -28,7 +28,8 @@ const Fruit = db.define('fruit', {
     validate: {
       isInt: true
     },
-    allowNull: false
+    allowNull: false,
+    min: 0
   }
 })
 
