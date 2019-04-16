@@ -1,4 +1,9 @@
-const User = require('./user')
+
+const authUser = require('./authUser')
+const Fruit = require('./fruit')
+const Cart = require('./cart')
+const orderItem = require('./cartItem')
+
 
 /**
  * If we had any associations to make, this would be a great place to put them!

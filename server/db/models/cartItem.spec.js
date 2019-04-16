@@ -2,9 +2,9 @@
 
 const {expect} = require('chai')
 const db = require('../index')
-const OrderItem = db.model('orderItem')
+const CartItem = db.model('cartItem')
 
-describe('Order Item model', () => {
+describe('Cart Item model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -14,7 +14,7 @@ describe('Order Item model', () => {
       let item
 
       beforeEach(async () => {
-        item = await OrderItem.create({
+        item = await CartItem.create({
           quantity: 3,
           price: 1.5
         })
