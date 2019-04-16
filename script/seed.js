@@ -1,6 +1,7 @@
 const Fruit = require('../server/db/models/fruit')
+const AuthUser = require('../server/db/models/authUser')
 const db = require('../server/db/db')
-const {green, red} = require('chalk')
+const {green} = require('chalk')
 
 const fruits = [
   {
@@ -79,20 +80,17 @@ async function seed() {
     await db.sync({force: true})
     console.log('db synced!')
 
-    await fruits.forEach(async function(fruit) {
-      await Fruit.create(fruit)
-    })
+    const [fruit, user] = await Promise.all([
+      Fruit.bulkCreate(fruits, {returning: true}),
+      AuthUser.bulkCreate(users, {returning: true})
+    ])
+
+    console.log(green('Seeding successful!'))
+    console.log(`seeded ${fruit.length} fruits`)
+    console.log(`seeded ${user.length} users`)
   } catch (err) {
     console.log(err)
   }
-
-  // users.forEach(async function(user) {
-  //   await AuthUser.create(user)
-  // })
-
-  console.log(green('Seeding success!'))
-
-  // }
 }
 
 async function runSeed() {
@@ -104,7 +102,7 @@ async function runSeed() {
     process.exitCode = 1
   } finally {
     console.log('closing db connection')
-    // await db.close()
+    await db.close()
     console.log('db connection closed')
   }
 }
@@ -112,11 +110,5 @@ async function runSeed() {
 if (module === require.main) {
   runSeed()
 }
-
-// seed().catch(err => {
-//   console.error(red('Oh noes! Something went wrong!'))
-//   console.error(err)
-//   db.close()
-// })
 
 module.exports = seed
