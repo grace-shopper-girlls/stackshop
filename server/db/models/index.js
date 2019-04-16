@@ -1,9 +1,7 @@
-
 const authUser = require('./authUser')
 const Fruit = require('./fruit')
 const Cart = require('./cart')
-const orderItem = require('./cartItem')
-
+const cartItem = require('./cartItem')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -19,5 +17,8 @@ const orderItem = require('./cartItem')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  authUser,
+  Fruit,
+  Cart,
+  cartItem
 }
