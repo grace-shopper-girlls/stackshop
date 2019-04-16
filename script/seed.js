@@ -85,7 +85,7 @@ async function seed() {
       AuthUser.bulkCreate(users, {returning: true})
     ])
 
-    console.log(green('Seeding successful!'))
+    console.log(green('Seeding successful!!'))
     console.log(`seeded ${fruit.length} fruits`)
     console.log(`seeded ${user.length} users`)
   } catch (err) {
