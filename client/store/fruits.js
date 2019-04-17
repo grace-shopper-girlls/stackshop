@@ -1,29 +1,17 @@
 import axios from 'axios'
 import history from '../history'
 
-/**
- * ACTION TYPES
- */
 const GETTING_FRUITS = 'GETTING_FRUITS'
 const GOT_FRUITS = 'GOT_FRUITS'
 
-/**
- * INITIAL STATE
- */
 const initialState = {
   all: [],
   loading: false
 }
 
-/**
- * ACTION CREATORS
- */
 const gotFruits = fruits => ({type: GOT_FRUITS, fruits})
 const gettingFruits = () => ({type: GETTING_FRUITS})
 
-/**
- * THUNK CREATORS
- */
 export const fetchFruits = () => {
   return async dispatch => {
     try {
@@ -36,9 +24,6 @@ export const fetchFruits = () => {
   }
 }
 
-/**
- * REDUCER
- */
 export default function(state = initialState, action) {
   switch (action.type) {
     case GETTING_FRUITS:
