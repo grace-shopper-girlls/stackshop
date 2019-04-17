@@ -29,4 +29,24 @@ describe('Fruit routes', () => {
       expect(res.body[0].name).to.be.equal(fruitName)
     })
   })
+
+  describe('/api/fruits/:id', () => {
+    let testFruit
+    beforeEach(async () => {
+      console.log('helloooooooo')
+      testFruit = await Fruit.create({
+        name: 'papaya',
+        price: 2,
+        quantity: 7
+      })
+    })
+
+    it('GET /api/fruits/:id', async () => {
+      const res = await request(app)
+        .get(`/api/fruits/${testFruit.id}`)
+        .expect(200)
+      expect(res.body).to.be.an('object')
+      expect(res.body.name).to.be.equal('papaya')
+    })
+  })
 })
