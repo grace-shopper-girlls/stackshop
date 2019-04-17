@@ -1,7 +1,6 @@
 import axios from 'axios'
 import history from '../history'
 
-
 /**
  * ACTION TYPES
  */
@@ -19,7 +18,8 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-const getFruits = fruits => ({type: GOT_FRUITS, fruits})
+const gotFruits = fruits => ({type: GOT_FRUITS, fruits})
+const gettingFruits = () => ({type: GETTING_FRUITS})
 
 /**
  * THUNK CREATORS
@@ -39,9 +39,9 @@ export const fetchFruits = () => {
 /**
  * REDUCER
  */
-export default function(state = intitialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
-    case GETTTING_FRUITS:
+    case GETTING_FRUITS:
       return {...state, loading: true}
     case GOT_FRUITS:
       return {...state, all: action.fruits}
