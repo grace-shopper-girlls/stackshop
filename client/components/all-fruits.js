@@ -1,14 +1,14 @@
 import React from 'react'
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 
 class AllFruits extends React.Component {
   constructor() {
     super()
   }
 
-  componentDidMount() {
-    //takes a thunk and dispatches the thunk that grabs the fruit from the database
-  }
+  // componentDidMount() {
+  //   takes a thunk and dispatches the thunk that grabs the fruit from the database
+  // }
 
   render() {
     const fruits = [
@@ -17,15 +17,17 @@ class AllFruits extends React.Component {
       {id: 3, name: 'mango'}
     ]
     return (
-    <h1>Cute Fruits:</h1>
+      <div>
+        <h1>Cute Fruits:</h1>
         {fruits.map(fruit => {
           return (
             <div key={fruit.id}>
-            <h3>{fruit.name}</h3>
+              <h3>{fruit.name}</h3>
             </div>
           )
         })}
-      )
+      </div>
+    )
   }
 }
 
