@@ -1,5 +1,3 @@
-/* global describe beforeEach it */
-
 const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
@@ -30,5 +28,5 @@ describe('Fruit routes', () => {
       expect(res.body).to.be.an('array')
       expect(res.body[0].name).to.be.equal(fruitName)
     })
-  }) // end describe('/api/fruits')
-}) // end describe('Fruit routes')
+  })
+})
