@@ -1,42 +1,47 @@
 import React from 'react'
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
+import {fetchFruits} from '../store/fruits'
 
 class AllFruits extends React.Component {
   constructor() {
     super()
   }
 
-  // componentDidMount() {
-  //   takes a thunk and dispatches the thunk that grabs the fruit from the database
-  // }
+  componentDidMount() {
+    this.props.fetchFruits()
+  }
 
   render() {
-    const fruits = [
-      {id: 1, name: 'banana'},
-      {id: 2, name: 'strawberry'},
-      {id: 3, name: 'mango'}
-    ]
-    return (
-      <div>
-        <h1>Cute Fruits:</h1>
-        {fruits.map(fruit => {
-          return (
-            <div key={fruit.id}>
-              <h3>{fruit.name}</h3>
-            </div>
-          )
-        })}
-      </div>
-    )
+    const {fruits, loading} = this.props
+
+    if (loading) {
+      return <div>Loading...</div>
+    } else {
+      return (
+        <div>
+          <h1>Cute Fruits:</h1>
+          {fruits.map(fruit => {
+            return (
+              <div key={fruit.id}>
+                <h3>{fruit.name}</h3>
+              </div>
+            )
+          })}
+        </div>
+      )
+    }
   }
 }
 
-export default AllFruits
+const mapState = state => {
+  return {
+    loading: state.loading,
+    fruits: state.all
+  }
+}
 
-// const mapState = state => {
-//   return {
-//     email: state.user.email
-//   }
-// }
+const mapDispatch = dispatch => ({
+  fetchFruits: () => dispatch(fetchFruits())
+})
 
-// export default connect(mapState)(AllFruits)
+export default connect(mapState, mapDispatch)(AllFruits)
