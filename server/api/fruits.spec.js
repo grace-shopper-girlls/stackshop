@@ -33,7 +33,6 @@ describe('Fruit routes', () => {
   describe('/api/fruits/:id', () => {
     let testFruit
     beforeEach(async () => {
-      console.log('helloooooooo')
       testFruit = await Fruit.create({
         name: 'papaya',
         price: 2,
