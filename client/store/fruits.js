@@ -44,7 +44,7 @@ export default function(state = initialState, action) {
     case GETTING_FRUITS:
       return {...state, loading: true}
     case GOT_FRUITS:
-      return {...state, all: action.fruits}
+      return {...state, all: action.fruits, loading: false}
     default:
       return state
   }
