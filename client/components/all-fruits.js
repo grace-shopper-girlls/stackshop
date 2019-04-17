@@ -13,7 +13,6 @@ class AllFruits extends React.Component {
 
   render() {
     const {fruits, loading} = this.props
-    console.log('fruits is ', fruits)
 
     if (loading) {
       return <div>Loading...</div>
@@ -36,7 +35,6 @@ class AllFruits extends React.Component {
 }
 
 const mapState = state => {
-  console.log('state is ', state)
   return {
     loading: state.fruits.loading,
     fruits: state.fruits.all
