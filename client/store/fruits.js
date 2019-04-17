@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 
 const GETTING_FRUITS = 'GETTING_FRUITS'
 const GOT_FRUITS = 'GOT_FRUITS'
