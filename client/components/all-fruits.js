@@ -25,6 +25,7 @@ class AllFruits extends React.Component {
             return (
               <div key={fruit.id}>
                 <h3>{fruit.name}</h3>
+                <img className="fruitImage" src={fruit.imageUrl} />
               </div>
             )
           })}
