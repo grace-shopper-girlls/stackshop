@@ -3,9 +3,9 @@
 const chai = require('chai')
 const {expect} = require('chai')
 const db = require('../db')
-const AuthUser = db.model('AuthUser')
+const User = db.model('user')
 
-describe('AuthUser model', () => {
+describe('User model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -13,7 +13,7 @@ describe('AuthUser model', () => {
   let cody
 
   beforeEach(async () => {
-    cody = await AuthUser.create({
+    cody = await User.create({
       firstname: 'cody',
       email: 'cody@puppybook.com',
       password: 'bones',
@@ -36,7 +36,7 @@ describe('AuthUser model', () => {
   }) // end describe('instanceMethods')
   describe('Validations', () => {
     it('requires `firstname`', async () => {
-      let jody = AuthUser.build()
+      let jody = User.build()
       try {
         await jody.validate()
         throw Error(
@@ -47,4 +47,4 @@ describe('AuthUser model', () => {
       }
     })
   }) //end describe ('Validations')
-}) // end describe('AuthUser model')
+}) // end describe('User model')
