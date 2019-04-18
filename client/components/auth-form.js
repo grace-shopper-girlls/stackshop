@@ -8,10 +8,40 @@ import {auth} from '../store'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
+        {name === 'signup' ? (
+          <div>
+            <div>
+              <label htmlFor="firstname">
+                <small>First Name</small>
+              </label>
+              <input name="firstname" type="text" />
+            </div>
+            <div>
+              <label htmlFor="lastname">
+                <small>Last Name</small>
+              </label>
+              <input name="lastname" type="text" />
+            </div>
+            <br />
+            <div>
+              <label htmlFor="imageurl">
+                <small>Image Url</small>
+              </label>
+              <input name="imageurl" type="text" />
+            </div>
+            <br />
+            <div>
+              <label htmlFor="address">
+                <small>Address</small>
+              </label>
+              <input name="address" type="text" />
+            </div>
+          </div>
+        ) : null}
+        <br />
         <div>
           <label htmlFor="email">
             <small>Email</small>
@@ -34,13 +64,6 @@ const AuthForm = props => {
   )
 }
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 const mapLogin = state => {
   return {
     name: 'login',
@@ -64,7 +87,13 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      const firstname = evt.target.firstname.value
+      const lastname = evt.target.lastname.value
+      const imageurl = evt.target.imageurl.value
+      const address = evt.target.address.value
+      dispatch(
+        auth(email, password, formName, firstname, lastname, imageurl, address)
+      )
     }
   }
 }
