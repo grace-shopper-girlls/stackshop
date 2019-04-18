@@ -1,28 +1,28 @@
 const {expect} = require('chai')
 const db = require('../index')
-const Cart = db.model('cart')
+const Order = db.model('order')
 const User = db.model('user')
 
-describe('Cart model', () => {
+describe('Order model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
   describe('attributes definition', () => {
-    let testCart
+    let testOrder
 
     beforeEach(async () => {
-      testCart = await Cart.create({
+      testOrder = await Order.create({
         totalPrice: 45.72
       })
     })
 
     it('requires totalPrice', async () => {
-      testCart.totalPrice = null
+      testOrder.totalPrice = null
       let result, error
 
       try {
-        result = await testCart.validate()
+        result = await testOrder.validate()
       } catch (err) {
         error = err
       }
@@ -33,11 +33,8 @@ describe('Cart model', () => {
   })
 })
 
-
 describe('associations', () => {
-
-  it("belongs to a user", async () => {
-
+  it('belongs to a user', async () => {
     const creatingUser = User.create({
       firstname: 'cody',
       email: 'cody@puppybook.com',
@@ -45,23 +42,25 @@ describe('associations', () => {
       imageurl:
         'https://upload.wikimedia.org/wikipedia/commons/a/a1/A_PUG_dog.jpg',
       address: '129 E. Ruff Street, Brooklyn, NY'
-    });
+    })
 
-    const creatingCart = Cart.create({
+    const creatingOrder = Order.create({
       totalPrice: 74.25
-    });
+    })
 
-    const [createdUser, createdCart] = await Promise.all([creatingUser, creatingCart]);
+    const [createdUser, createdOrder] = await Promise.all([
+      creatingUser,
+      creatingOrder
+    ])
 
-    await createdCart.setUser(createdUser);
+    await createdOrder.setUser(createdUser)
 
-    const foundCart = await Cart.findOne({
-      where: { totalPrice: 74.25 },
-      include: { model: User}
-    });
+    const foundOrder = await Order.findOne({
+      where: {totalPrice: 74.25},
+      include: {model: User}
+    })
 
-    expect(foundCart.User).to.exist; // eslint-disable-line no-unused-expressions
-    expect(foundCart.User.firstname).to.equal('cody');
-  });
-
-});
+    expect(foundOrder.User).to.exist // eslint-disable-line no-unused-expressions
+    expect(foundOrder.User.firstname).to.equal('cody')
+  })
+})
