@@ -1,14 +1,40 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Cart = db.define('cart', {
-  totalPrice: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
+const Order = db.define('order', {
+  orderDate: {
+    type: Sequelize.DATE
+  },
+  orderSubmitted: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  buyerName: {
+    type: Sequelize.STRING
+  },
+  shippingAddress: {
+    type: Sequelize.STRING
+  },
+  billingAddress: {
+    type: Sequelize.STRING
+  },
+  email: {
+    type: Sequelize.STRING,
     validate: {
-      isDecimal: true
+      isEmail: true
     }
+  },
+  subtotal: {
+    type: Sequelize.FLOAT,
+    allowNull: false
+  },
+  shippingCost: {
+    type: Sequelize.FLOAT
+  },
+  grandTotal: {
+    type: Sequelize.FLOAT,
+    allowNull: false
   }
 })
 
-module.exports = Cart
+module.exports = Order
