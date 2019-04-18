@@ -36,8 +36,7 @@ class SingleFruit extends React.Component {
           <h2> Price: $ {fruit.price} </h2>
           <h2> Quantity Available: {fruit.quantity} </h2>
           <button type="button" onClick={this.handleAddToCart}>
-            {' '}
-            Add to Cart{' '}
+            Add to Cart
           </button>
         </div>
       )
