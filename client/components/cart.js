@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+// import CartItem from './components/cart-item'
 
 const fakeCartData = {
   id: 1,
@@ -10,7 +11,7 @@ const fakeCartData = {
   shippingAddress: null,
   billingAddress: null,
   email: null,
-  subTotal: 26.46,
+  subtotal: 26.46,
   shippingCost: 3.75,
   grandTotal: 30.21,
   orderItems: [
@@ -51,11 +52,13 @@ class Cart extends React.Component {
       <div>
         <h1>Cart</h1>
         <p>subtotal: {cart.subtotal}</p>
-        <p>shipping: {cart.shipping}</p>
-        <p>shipping: {cart.grandTotal}</p>
+        <p>shipping: {cart.shippingCost}</p>
+        <p>Grand Total: {cart.grandTotal}</p>
 
+        <h1>Items</h1>
         {items.map(item => {
-          return <Cart Item key={item.id} item={item} />
+          return <h1>{item.id}</h1>
+          // return <CartItem key={item.id} item={item} />
         })}
       </div>
     )
