@@ -13,7 +13,7 @@ const AddCartItem = props => {
           addCartItem(id)
         }}
       >
-        add to cart
+        Add to Cart
       </button>
     </div>
   )
