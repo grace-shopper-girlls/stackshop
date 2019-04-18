@@ -24,3 +24,8 @@ form div {
   max-width: 400px;
   height: auto;
 }
+
+.cartThumbnail {
+  max-width: 100px;
+  height: auto;
+}
