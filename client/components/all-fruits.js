@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchFruits} from '../store/fruits'
+import AddCartItem from './cart-item-add'
 
 class AllFruits extends React.Component {
   constructor() {
@@ -25,6 +26,7 @@ class AllFruits extends React.Component {
               <div key={fruit.id}>
                 <h3>{fruit.name}</h3>
                 <img className="fruitImage" src={fruit.imageUrl} />
+                <AddCartItem fruit={fruit} />
               </div>
             )
           })}

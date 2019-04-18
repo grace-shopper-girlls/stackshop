@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchFruit} from '../store/fruits'
+import AddCartItem from './cart-item-add'
 
 class SingleFruit extends React.Component {
   constructor(props) {
@@ -12,12 +13,6 @@ class SingleFruit extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id
     this.props.fetchFruit(id)
-  }
-
-  //this handler function does not work as the cart has not been made
-  handleAddToCart(event) {
-    const fruit = event.target.name
-    return fruit
   }
 
   render() {
@@ -35,9 +30,7 @@ class SingleFruit extends React.Component {
           <h3> Description: {fruit.description} </h3>
           <h2> Price: $ {fruit.price} </h2>
           <h2> Quantity Available: {fruit.quantity} </h2>
-          <button type="button" onClick={this.handleAddToCart}>
-            Add to Cart
-          </button>
+          <AddCartItem fruit={fruit} />
         </div>
       )
     }
