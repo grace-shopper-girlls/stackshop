@@ -13,7 +13,7 @@ const DeleteCartItem = props => {
           deleteCartItem(id)
         }}
       >
-        remove from cart
+        Remove from Cart
       </button>
     </div>
   )
