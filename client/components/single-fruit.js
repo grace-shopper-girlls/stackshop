@@ -11,10 +11,10 @@ class SingleFruit extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.id
-    console.log('the id is ', id)
     this.props.fetchFruit(id)
   }
 
+  //this handler function does not work as the cart has not been made
   handleAddToCart(event) {
     const fruit = event.target.name
     return fruit
@@ -22,30 +22,32 @@ class SingleFruit extends React.Component {
 
   render() {
     const fruit = this.props.fruit
-    console.log('the props are ', this.props)
+    const loading = fruit.loading
 
-    // if (loading) {
-    //   return <div>Loading...</div>
-    // } else {
-    return (
-      <div>
-        <Link to="/"> Back to All Fruit </Link>
-        <img className="zoomFruitImg" src={fruit.imageUrl} />
-        <h1 className="fruitName"> {fruit.name} </h1>
-        <h3> Description: {fruit.description} </h3>
-        <h2> Price: $ {fruit.price} </h2>
-        <h2> Quantity Available: {fruit.quantity} </h2>
-        <button onClick={this.handleAddToCart}> Add to Cart </button>
-      </div>
-    )
-    // }
+    if (loading) {
+      return <div>Loading...</div>
+    } else {
+      return (
+        <div>
+          <Link to="/"> Back to All Fruit </Link>
+          <img className="zoomFruitImg" src={fruit.imageUrl} />
+          <h1 className="fruitName"> {fruit.name} </h1>
+          <h3> Description: {fruit.description} </h3>
+          <h2> Price: $ {fruit.price} </h2>
+          <h2> Quantity Available: {fruit.quantity} </h2>
+          <button type="button" onClick={this.handleAddToCart}>
+            {' '}
+            Add to Cart{' '}
+          </button>
+        </div>
+      )
+    }
   }
 }
 
 const mapState = state => {
-  console.log('state.fruits is ', state.fruits)
   return {
-    // loading: state.fruit.loading,
+    loading: state.fruits.loading,
     fruit: state.fruits.selected
   }
 }
