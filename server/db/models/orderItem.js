@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const CartItem = db.define('cartItem', {
+const OrderItem = db.define('orderItem', {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -11,12 +11,8 @@ const CartItem = db.define('cartItem', {
     }
   },
   price: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-    validate: {
-      isDecimal: true
-    }
+    type: Sequelize.FLOAT
   }
 })
 
-module.exports = CartItem
+module.exports = OrderItem
