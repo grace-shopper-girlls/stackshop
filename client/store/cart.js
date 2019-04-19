@@ -2,9 +2,10 @@ import axios from 'axios'
 
 const ADD_ITEM = 'ADD_ITEM'
 
-const addToCart = fruit => ({
+const addToCart = (fruit, selectedQuantity) => ({
   type: ADD_ITEM,
-  fruit
+  fruit,
+  selectedQuantity
 })
 
 let initialState = {
