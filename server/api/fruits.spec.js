@@ -47,5 +47,16 @@ describe('Fruit routes', () => {
       expect(res.body).to.be.an('object')
       expect(res.body.name).to.be.equal('papaya')
     })
+
+    it('PUT /api/fruits/:id', async () => {
+      await request(app)
+        .put(`/api/fruits/${testFruit.id}`)
+        .send({quantity: 3})
+        .expect(204)
+      const foundFruit = await Fruit.findByPk(testFruit.id)
+      // eslint-disable-next-line no-unused-expressions
+      expect(foundFruit).to.exist
+      expect(foundFruit.quantity).to.equal(3)
+    })
   })
 })

@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchFruits} from '../store/fruits'
 import AddCartItem from './cart-item-add'
+import Loading from './loading'
 
 class AllFruits extends React.Component {
   constructor() {
@@ -15,10 +16,9 @@ class AllFruits extends React.Component {
   render() {
     const {fruits, loading} = this.props
 
-    if (loading) {
-      return <div>Loading...</div>
-    } else {
-      return (
+    return loading ? (
+      <Loading />
+    ) : (
         <div>
           <h1>Cute Fruits:</h1>
           {fruits.map(fruit => {
@@ -34,7 +34,6 @@ class AllFruits extends React.Component {
       )
     }
   }
-}
 
 const mapState = state => {
   return {
