@@ -4,29 +4,52 @@ import {addToCartThunk} from '../store/cart'
 // ^^^ create that in the cart redux
 
 const AddCartItem = props => {
-  const {id, addToCartThunk} = props
+  const {addToCartThunk} = props
+  const {id, quantity} = props.fruit
+
+  // const populateQuantityDropdown = quantity => {
+  //   let result = []
+  //   for (let i = 1; i <= quantity; i++) {
+  //     result.push(`<option value="${i}">${i}</option>`)
+  //   }
+  //   return result.join('\n')
+  // }
+
+  // const quantityDropdown = populateQuantityDropdown(quantity)
+
+  const menuItems = quantity => {
+    let menu = []
+    for (let i = 0; i < quantity; i++) {
+      menu.push([])
+    }
+    return menu
+  }
+
+  const quantityDropdown = menuItems(quantity)
+
   return (
     <div>
-      <body>
-        <form name="menu">
-          <span>
-            Qty:
-            <select name="quantity">
-              {/* make axios request and map over the quantity available in database */}
-              {/* should this be its own component so we can add it to the cart-item? */}
-              <option value="1">1</option>
-              <option value="2">2</option>
-            </select>
-            <input
-              type="button"
-              value="Add to Cart"
-              // onClick={() => {
-              //   addToCartThunk(quantity, id)
-              // }}
-            />
-          </span>
-        </form>
-      </body>
+      <form name="menu">
+        <span>
+          Qty:
+          <select name="quantity">
+            {quantityDropdown.map((option, i) => {
+              return (
+                <option value={i} key={i}>
+                  {i + 1}
+                </option>
+              )
+            })}
+          </select>
+          <input
+            type="button"
+            value="Add to Cart"
+            onClick={() => {
+              addToCartThunk(id)
+            }}
+          />
+        </span>
+      </form>
     </div>
   )
 }
@@ -54,3 +77,13 @@ export default connect(null, mapDispatch)(AddCartItem)
         Add to Cart
       </button> */
 }
+
+// const menuItems = quantity => {
+//   let menu = []
+//   for (let i = 0; i < quantity; i++) {
+//     menu.push([])
+//   }
+//   return menu
+// }
+
+// const quantityDropdown = menuItems(quantity)
