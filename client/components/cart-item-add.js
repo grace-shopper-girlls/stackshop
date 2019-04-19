@@ -7,14 +7,31 @@ const AddCartItem = props => {
   const {id, addToCartThunk} = props
   return (
     <div>
-      <button
+      <body>
+        <form>
+          <select id="quantity">
+            {/* map over the quantity available in database */}
+            <option value="i" id={i}>
+              ${i}
+            </option>
+          </select>
+          <input
+            type="button"
+            value="Add to Cart"
+            onClick={() => {
+              addToCartThunk(id)
+            }}
+          />
+        </form>
+      </body>
+      {/* <button
         type="submit"
         onClick={() => {
           addToCartThunk(id)
         }}
       >
         Add to Cart
-      </button>
+      </button> */}
     </div>
   )
 }
