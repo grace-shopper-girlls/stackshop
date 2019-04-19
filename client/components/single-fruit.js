@@ -8,7 +8,6 @@ import Loading from './loading'
 class SingleFruit extends React.Component {
   constructor(props) {
     super(props)
-    // this.handleAddToCart = this.handleAddToCart.bind(this)
   }
 
   componentDidMount() {
