@@ -2,10 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {addToCartThunk} from '../store/cart'
 import DropDownMenu from './quantity-drop-down'
-// ^^^ create that in the cart redux
 
 const AddCartItem = props => {
-  const {id, quantity} = props.fruit
+  const {id} = props.fruit
 
   return (
     <div>

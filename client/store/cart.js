@@ -15,7 +15,6 @@ let initialState = {
 export const addToCartThunk = id => {
   return async dispatch => {
     const {data} = await axios.post('/api/cartItem/', id)
-    //express route must be setup to return the fruit object with the id given
     dispatch(addToCart(data))
   }
 }
