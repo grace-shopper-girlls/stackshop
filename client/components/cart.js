@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-// import CartItem from './components/cart-item'
+import CartItem from './cart-item'
 
 const fakeCartData = {
   id: 1,
@@ -57,8 +57,7 @@ class Cart extends React.Component {
 
         <h1>Items</h1>
         {items.map(item => {
-          return <h1>{item.id}</h1>
-          // return <CartItem key={item.id} item={item} />
+          return <CartItem key={item.id} item={item} />
         })}
       </div>
     )

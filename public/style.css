@@ -25,6 +25,11 @@ form div {
   height: auto;
 }
 
+.cartThumbnail {
+  max-width: 100px;
+  height: auto;
+}
+
 .zoomFruitImage {
   max-width: 600px;
   height: auto;
