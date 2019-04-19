@@ -7,7 +7,6 @@ import AddCartItem from './cart-item-add'
 class SingleFruit extends React.Component {
   constructor(props) {
     super(props)
-    // this.handleAddToCart = this.handleAddToCart.bind(this)
   }
 
   componentDidMount() {
