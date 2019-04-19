@@ -1,12 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
-// import { deleteCartItemThunk } from '../store/cart';
+// import {deleteCartItemThunk} from '../store/cart'
 // ^^^ create that in the cart redux
 
 const DeleteCartItem = props => {
   const {id, deleteCartItem} = props
   return (
     <div>
+      {/* do we want the user to be able to select the amount to delete from the cart? */}
       <button
         type="submit"
         onClick={() => {

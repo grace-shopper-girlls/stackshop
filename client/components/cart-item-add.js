@@ -8,30 +8,25 @@ const AddCartItem = props => {
   return (
     <div>
       <body>
-        <form>
-          <select id="quantity">
-            {/* map over the quantity available in database */}
-            <option value="i" id={i}>
-              ${i}
-            </option>
-          </select>
-          <input
-            type="button"
-            value="Add to Cart"
-            onClick={() => {
-              addToCartThunk(id)
-            }}
-          />
+        <form name="menu">
+          <span>
+            Qty:
+            <select name="quantity">
+              {/* make axios request and map over the quantity available in database */}
+              {/* should this be its own component so we can add it to the cart-item? */}
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+            <input
+              type="button"
+              value="Add to Cart"
+              // onClick={() => {
+              //   addToCartThunk(quantity, id)
+              // }}
+            />
+          </span>
         </form>
       </body>
-      {/* <button
-        type="submit"
-        onClick={() => {
-          addToCartThunk(id)
-        }}
-      >
-        Add to Cart
-      </button> */}
     </div>
   )
 }
@@ -48,3 +43,14 @@ export default connect(null, mapDispatch)(AddCartItem)
 //  <option value=“mercedes”>Mercedes</option>
 //  <option value=“audi”>Audi</option>
 // </select>
+
+{
+  /* <button
+        type="submit"
+        onClick={() => {
+          addToCartThunk(id)
+        }}
+      >
+        Add to Cart
+      </button> */
+}
