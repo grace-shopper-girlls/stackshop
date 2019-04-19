@@ -24,7 +24,7 @@ class SingleFruit extends React.Component {
     ) : (
       <div>
         <Link to="/"> Back to All Fruit </Link>
-        <img className="zoomFruitImg" src={fruit.imageUrl} />
+        <img className="zoomFruitImage" src={fruit.imageUrl} />
         <h1 className="fruitName"> {fruit.name} </h1>
         <h3> Description: {fruit.description} </h3>
         <h2> Price: $ {fruit.price} </h2>
