@@ -80,26 +80,6 @@ const mapSignup = state => {
   }
 }
 
-// const mapDispatch = dispatch => {
-//   return {
-//     handleSubmit(evt) {
-//       evt.preventDefault()
-//       if (name === 'signup') {
-//         const firstname = evt.target.firstname.value
-//         const lastname = evt.target.lastname.value
-//         const imageurl = evt.target.imageurl.value
-//         const address = evt.target.address.value
-//       }
-//       const formName = evt.target.name
-//       const email = evt.target.email.value
-//       const password = evt.target.password.value
-//       dispatch(
-//         auth(email, password, formName, firstname, lastname, imageurl, address)
-//       )
-//     }
-//   }
-// }
-
 const mapDispatchLogin = dispatch => {
   return {
     handleSubmit(evt) {
