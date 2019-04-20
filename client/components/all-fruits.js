@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchFruits} from '../store/fruits'
 import AddCartItem from './cart-item-add'
 import Loading from './loading'
+import {Link} from 'react-router-dom'
 
 class AllFruits extends React.Component {
   constructor() {
@@ -19,21 +20,23 @@ class AllFruits extends React.Component {
     return loading ? (
       <Loading />
     ) : (
-        <div>
-          <h1>Cute Fruits:</h1>
-          {fruits.map(fruit => {
-            return (
-              <div key={fruit.id}>
+      <div>
+        <h1>Cute Fruits:</h1>
+        {fruits.map(fruit => {
+          return (
+            <div key={fruit.id}>
+              <Link to={`/fruits/${fruit.id}`}>
                 <h3>{fruit.name}</h3>
                 <img className="fruitImage" src={fruit.imageUrl} />
-                <AddCartItem fruit={fruit} />
-              </div>
-            )
-          })}
-        </div>
-      )
-    }
+              </Link>
+              <AddCartItem fruit={fruit} />
+            </div>
+          )
+        })}
+      </div>
+    )
   }
+}
 
 const mapState = state => {
   return {
