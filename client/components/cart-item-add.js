@@ -7,7 +7,7 @@ class AddCartItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      quantitySelected: this.props.quantitySelected
+      quantitySelected: 1
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }

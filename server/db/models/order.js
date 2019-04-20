@@ -26,6 +26,7 @@ const Order = db.define('order', {
   },
   subtotal: {
     type: Sequelize.FLOAT,
+    defaultValue: 0,
     allowNull: false
   },
   shippingCost: {
@@ -33,6 +34,7 @@ const Order = db.define('order', {
   },
   grandTotal: {
     type: Sequelize.FLOAT,
+    defaultValue: 0,
     allowNull: false
   }
 })
