@@ -34,3 +34,21 @@ form div {
   max-width: 600px;
   height: auto;
 }
+
+nav {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.cartImage {
+  max-width: 25px;
+  height: auto;
+}
+
+.main {
+  margin-top: 150px;
+}

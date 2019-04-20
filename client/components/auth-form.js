@@ -80,17 +80,28 @@ const mapSignup = state => {
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatchLogin = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
+      dispatch(auth(email, password, formName))
+    }
+  }
+}
+const mapDispatchSignup = dispatch => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
       const firstname = evt.target.firstname.value
       const lastname = evt.target.lastname.value
       const imageurl = evt.target.imageurl.value
       const address = evt.target.address.value
+      const formName = evt.target.name
+      const email = evt.target.email.value
+      const password = evt.target.password.value
       dispatch(
         auth(email, password, formName, firstname, lastname, imageurl, address)
       )
@@ -98,8 +109,8 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export const Login = connect(mapLogin, mapDispatchLogin)(AuthForm)
+export const Signup = connect(mapSignup, mapDispatchSignup)(AuthForm)
 
 /**
  * PROP TYPES
