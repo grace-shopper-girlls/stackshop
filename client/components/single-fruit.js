@@ -23,7 +23,10 @@ class SingleFruit extends React.Component {
       <Loading />
     ) : (
       <div>
-        <Link to="/"> Back to All Fruit </Link>
+        <div>
+          <Link to="/"> Back to All Fruit </Link>
+        </div>
+        <hr />
         <img className="zoomFruitImg" src={fruit.imageUrl} />
         <h1 className="fruitName"> {fruit.name} </h1>
         <h3> Description: {fruit.description} </h3>
