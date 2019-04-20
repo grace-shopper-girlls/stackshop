@@ -24,7 +24,7 @@ describe('Front-End', () => {
   ]
 
   describe('<AllFruits /> component', () => {
-    it('renders all of the fruits passed in as props', async () => {
+    it('renders the "Cute Fruits" title as an h1', () => {
       const wrapper = shallow(
         <Provider store={store}>
           <AllFruits fruits={testFruits} />
@@ -32,7 +32,7 @@ describe('Front-End', () => {
       )
 
       expect(
-        wrapper.findWhere(n => n.type() === 'h3' && n.contains('Cute Fruits:'))
+        wrapper.findWhere(n => n.type() === 'h1' && n.contains('Cute Fruits:'))
       )
     })
   })
