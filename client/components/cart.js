@@ -14,14 +14,10 @@ class Cart extends React.Component {
 
   componentDidMount() {
     this.props.fetchCart(1)
-    console.log('cart', this.state.cart)
-    console.log('items', this.state.orderItems)
     // ^^ this is just hardcoded for now because I don't know where the logged in user's id lives
   }
 
   render() {
-    // console.log('cart', this.state.cart)
-    // console.log('items', this.state.orderItems)
     const cart = this.state.cart
     // const items = this.state.orderItems
     const items = [
