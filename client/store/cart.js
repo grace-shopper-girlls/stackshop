@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const GET_CART = 'GET_CART'
 const SET_QUANTITY = 'SET_QUANTITY'
-const ADD_ITEM = 'ADD_ITEM'
+const ADD_TO_CART = 'ADD_TO_CART'
 
 const getCart = cart => ({
   type: GET_CART,
@@ -14,17 +14,15 @@ const setQuantity = quantity => ({
   quantity
 })
 
-const addToCart = (fruit, selectedQuantity) => ({
-  type: ADD_ITEM,
-  fruit,
-  selectedQuantity
+const addToCart = newOrderItem => ({
+  type: ADD_TO_CART,
+  newOrderItem
 })
 
-
 let initialState = {
-  cart: {},
+  cart: {id: 1, subtotal: 4.56, grandTotal: 6.0},
   cartItems: [],
-  quantitySelected: 0
+  quantitySelected: 1
 }
 
 export const fetchCart = userId => {
@@ -41,30 +39,39 @@ export const setCartQuantity = quantity => {
   }
 }
 
-export const addToCartThunk = (cart, fruit, selectedQuantity) => {
-  let cartId = cart.id
-  let fruitId = fruit.id
-  let price = Math.round(selectedQuantity * fruit.price)
+export const addToCartThunk = (cart, fruit, quantitySelected) => {
   let newOrderItem = {
-    cartId,
-    fruitId,
-    quantity: selectedQuantity,
-    price
+    cartId: cart.id,
+    fruitId: fruit.id,
+    quantity: quantitySelected,
+    price: quantitySelected * fruit.price
   }
-  return async dispatch => {
-    const {data} = await axios.post('/api/order-items/', newOrderItem)
-    dispatch(addToCart(data))
+  console.log('new order item', newOrderItem)
+  return dispatch => {
+    dispatch(addToCart(newOrderItem))
   }
+
+  // the cart item can't be stored in the database yet because the express route doesn't work
+  // for now, this thunk just adds the cart item to the redux store
+  // return async dispatch => {
+  //   const {data} = await axios.post('/api/order-items/', newOrderItem)
+  //   dispatch(addToCart(newOrderItem))
+  // }
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_CART:
       return {...state, cart: action.cart}
+    case ADD_TO_CART:
+      return {
+        ...state,
+        cartItems: [action.newOrderItem],
+        quantitySelected: 1
+      }
     case SET_QUANTITY:
       return {...state, quantitySelected: action.quantity}
-    case ADD_ITEM:
-      return {...state, cartItems: [...state.cartItems, action.data]}
+
     default:
       return state
   }

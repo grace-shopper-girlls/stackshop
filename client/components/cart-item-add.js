@@ -6,23 +6,16 @@ import DropDownMenu from './quantity-drop-down'
 class AddCartItem extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      quantitySelected: 0
-    }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    this.setState({
-      quantitySelected: 1
-    })
+    // reset the dropdown to 1
   }
 
   render() {
-    const {id} = this.props.fruit
-
-    console.log('props', this.props)
+    const fruit = this.props.fruit
     return (
       <div id="add-to-cart">
         <form onSubmit={this.handleSubmit}>
@@ -30,7 +23,11 @@ class AddCartItem extends React.Component {
           <button
             type="submit"
             onClick={() => {
-              addToCartThunk(id, this.state.quantitySelected)
+              addToCartThunk(
+                this.props.cart,
+                fruit,
+                this.props.quantitySelected
+              )
             }}
           >
             Add to Cart
@@ -43,13 +40,14 @@ class AddCartItem extends React.Component {
 
 const mapState = state => {
   return {
+    cart: state.cart.cart,
+    cartItems: state.cart.cartItems,
     quantitySelected: state.cart.quantitySelected
   }
 }
-
 const mapDispatch = dispatch => ({
-  addToCartThunk: (id, quantitySelected) =>
-    dispatch(addToCartThunk(id, quantitySelected))
+  addToCartThunk: (cart, fruit, quantitySelected) =>
+    dispatch(addToCartThunk(cart, fruit, quantitySelected))
 })
 
 export default connect(mapState, mapDispatch)(AddCartItem)
