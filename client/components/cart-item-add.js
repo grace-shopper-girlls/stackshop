@@ -11,7 +11,6 @@ class AddCartItem extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    // reset the dropdown to 1
   }
 
   render() {
