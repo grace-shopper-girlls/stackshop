@@ -1,36 +1,50 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {setCartQuantity} from '../store'
 
-const DropDownMenu = props => {
-  const {quantity} = props.fruit
-
-  const menuItems = () => {
-    let menu = []
-    for (let i = 0; i < quantity; i++) {
-      menu.push([])
-    }
-    return menu
+class DropDownMenu extends React.Component {
+  constructor() {
+    super()
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  const quantityDropdown = menuItems()
+  handleChange(event) {
+    this.props.setCartQuantity(event.target.value)
+  }
 
-  return (
-    <div>
-      <form name="menu">
+  render() {
+    const menuItems = () => {
+      let menu = []
+      for (let i = 0; i < this.props.quantity; i++) {
+        menu.push([])
+      }
+      return menu
+    }
+
+    const quantityDropdown = menuItems()
+
+    return (
+      <div>
         <span>
-          Qty:
-          <select name="quantity">
+          Qty:&nbsp;
+          <select name="quantity" onChange={this.handleChange}>
             {quantityDropdown.map((option, i) => {
               return (
-                <option value={i} key={i}>
+                <option value={i + 1} key={i}>
                   {i + 1}
                 </option>
               )
             })}
           </select>
         </span>
-      </form>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
-export default DropDownMenu
+const mapDispatch = dispatch => ({
+  setCartQuantity: quantitySelected =>
+    dispatch(setCartQuantity(quantitySelected))
+})
+
+export default connect(null, mapDispatch)(DropDownMenu)

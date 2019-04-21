@@ -1,29 +1,52 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addToCartThunk} from '../store/cart'
+import {addToCartThunk} from '../store'
 import DropDownMenu from './quantity-drop-down'
 
-const AddCartItem = props => {
-  const {id} = props.fruit
+class AddCartItem extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
 
-  return (
-    <div>
-      <DropDownMenu fruit={props.fruit} />
+  handleSubmit(event) {
+    event.preventDefault()
+  }
 
-      <button
-        type="submit"
-        onClick={() => {
-          addToCartThunk(id)
-        }}
-      >
-        Add to Cart
-      </button>
-    </div>
-  )
+  render() {
+    const fruit = this.props.fruit
+    return (
+      <div id="add-to-cart">
+        <form onSubmit={this.handleSubmit}>
+          <DropDownMenu quantity={this.props.fruit.quantity} />
+          <button
+            type="submit"
+            onClick={() => {
+              addToCartThunk(
+                this.props.cart,
+                fruit,
+                this.props.quantitySelected
+              )
+            }}
+          >
+            Add to Cart
+          </button>
+        </form>
+      </div>
+    )
+  }
 }
 
+const mapState = state => {
+  return {
+    cart: state.cart.cart,
+    cartItems: state.cart.cartItems,
+    quantitySelected: state.cart.quantitySelected
+  }
+}
 const mapDispatch = dispatch => ({
-  addToCartThunk: id => dispatch(addToCartThunk(id))
+  addToCartThunk: (cart, fruit, quantitySelected) =>
+    dispatch(addToCartThunk(cart, fruit, quantitySelected))
 })
 
-export default connect(null, mapDispatch)(AddCartItem)
+export default connect(mapState, mapDispatch)(AddCartItem)

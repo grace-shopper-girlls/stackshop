@@ -1,61 +1,61 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {fetchCart} from '../store'
 import CartItem from './cart-item'
 
-const fakeCartData = {
-  id: 1,
-  userId: null,
-  orderDate: '2019-04-15',
-  orderSubmitted: false,
-  buyerName: null,
-  shippingAddress: null,
-  billingAddress: null,
-  email: null,
-  subtotal: 26.46,
-  shippingCost: 3.75,
-  grandTotal: 30.21,
-  orderItems: [
-    {
-      fruitId: 1,
-      quantity: 14,
-      price: 25.48,
-      fruit: {
-        name: 'apple',
-        price: 1.82,
-        imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bananas.svg/2560px-Bananas.svg.png'
-      }
-    },
-    {
-      fruitId: 2,
-      quantity: 2,
-      price: 0.98,
-      fruit: {
-        name: 'banana',
-        price: 0.49
-      }
-    }
-  ]
-}
-
 class Cart extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      cart: {},
+      orderItems: []
+    }
+  }
+
   componentDidMount() {
-    // this.props.fetchOrderRows
-    // (this doesn't exist yet, but will once the reducer is made)
+    this.props.fetchCart(1)
+    // ^^ this is just hardcoded for now because I don't know where the logged in user's id lives
   }
 
   render() {
-    const cart = fakeCartData
-    const items = fakeCartData.orderItems
+    const cart = this.state.cart
+    // const items = this.state.orderItems
+    const items = [
+      {
+        fruitId: 1,
+        quantity: 14,
+        price: 25.48,
+        fruit: {
+          name: 'apple',
+          price: 1.82,
+          imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bananas.svg/2560px-Bananas.svg.png'
+        }
+      },
+      {
+        fruitId: 2,
+        quantity: 2,
+        price: 0.98,
+        fruit: {
+          name: 'banana',
+          price: 0.49
+        }
+      }
+    ]
 
     return (
       <div>
         <h1>Cart</h1>
-        <p>subtotal: {cart.subtotal}</p>
-        <p>shipping: {cart.shippingCost}</p>
+        <p>Subtotal: {cart.subtotal}</p>
+        <p>Shipping: {cart.shippingCost}</p>
         <p>Grand Total: {cart.grandTotal}</p>
 
         <h1>Items</h1>
+        {!items.length ? (
+          <p>Cart is empty</p>
+        ) : (
+          <h2> {items.length} items in cart</h2>
+        )}
         {items.map(item => {
           return <CartItem key={item.id} item={item} />
         })}
@@ -64,16 +64,15 @@ class Cart extends React.Component {
   }
 }
 
-// const mapState = state => {
-//   return {
-//     loading: state.cart.loading,
-//     cart: state.cart.cart,
-//     items: state.cart.items
-//   }
-// }
+const mapState = state => {
+  return {
+    cart: state.cart.cart,
+    orderItems: state.cart.cart.orderItems
+  }
+}
 
-// const mapDispatch = dispatch => ({
-//   fetchCartItems: id => dispatch(fetchCartItems(id))
-// })
+const mapDispatch = dispatch => ({
+  fetchCart: userId => dispatch(fetchCart(userId))
+})
 
-export default connect(null, null)(Cart)
+export default connect(mapState, mapDispatch)(Cart)
