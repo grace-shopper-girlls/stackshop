@@ -1,20 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {setCartQuantity} from '../store'
 
 class DropDownMenu extends React.Component {
   constructor() {
     super()
-    this.state = {
-      quantitySelected: 1
-    }
     this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange(event) {
-    this.setState({
-      quantitySelected: event.target.value
-    })
-    console.log('state', this.state)
+    this.props.setCartQuantity(event.target.value)
   }
 
   render() {
@@ -47,4 +42,9 @@ class DropDownMenu extends React.Component {
   }
 }
 
-export default connect(null, null)(DropDownMenu)
+const mapDispatch = dispatch => ({
+  setCartQuantity: quantitySelected =>
+    dispatch(setCartQuantity(quantitySelected))
+})
+
+export default connect(null, mapDispatch)(DropDownMenu)

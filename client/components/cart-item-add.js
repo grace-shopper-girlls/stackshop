@@ -7,14 +7,13 @@ class AddCartItem extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      quantitySelected: 1
+      quantitySelected: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log('state', this.state)
     this.setState({
       quantitySelected: 1
     })
@@ -44,7 +43,7 @@ class AddCartItem extends React.Component {
 
 const mapState = state => {
   return {
-    quantitySelected: state.quantitySelected
+    quantitySelected: state.cart.quantitySelected
   }
 }
 
