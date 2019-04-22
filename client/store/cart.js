@@ -14,11 +14,9 @@ const setQuantity = quantity => ({
   quantity
 })
 
-let nextId = 0
 const addToCart = data => ({
   type: ADD_TO_CART,
-  data,
-  id: nextId++
+  data
 })
 
 let initialState = {
