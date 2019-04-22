@@ -14,7 +14,7 @@ main {
   justify-content: center;
   margin-left: 60px;
   margin-right: 30px;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
 a {
@@ -51,6 +51,7 @@ nav {
   color: white;
   font-family: 'Baloo Bhaina', cursive;
   font-size: 2.2em;
+  margin-left: -105px;
 }
 
 .nav-buttons {
@@ -91,8 +92,8 @@ form div {
   height: 125px;
 }
 
-.zoomFruitImage {
-  max-width: 600px;
+.singleFruitImage {
+  max-width: 500px;
   height: auto;
 }
 
