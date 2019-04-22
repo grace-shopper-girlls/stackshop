@@ -18,7 +18,7 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-//when logged-in user submits an order
+//for when logged-in user submits an order
 router.put('/', async (req, res, next) => {
   let body = req.body
   try {
@@ -27,36 +27,6 @@ router.put('/', async (req, res, next) => {
         id: body.id
       },
       orderSubmitted: true
-    })
-  } catch (error) {
-    next(error)
-  }
-})
-
-//when guest submits an order
-router.post('/', async (req, res, next) => {
-  let {
-    orderDate,
-    orderSubmitted,
-    buyerName,
-    shippingAddress,
-    billingAddress,
-    email,
-    subtotal,
-    shippingCost,
-    grandTotal
-  } = req.body
-  try {
-    await Order.create({
-      orderDate,
-      orderSubmitted,
-      buyerName,
-      shippingAddress,
-      billingAddress,
-      email,
-      subtotal,
-      shippingCost,
-      grandTotal
     })
   } catch (error) {
     next(error)
