@@ -14,9 +14,11 @@ const setQuantity = quantity => ({
   quantity
 })
 
-const addToCart = newOrderItem => ({
+let nextId = 0
+const addToCart = data => ({
   type: ADD_TO_CART,
-  newOrderItem
+  data,
+  id: nextId++
 })
 
 let initialState = {
@@ -27,8 +29,12 @@ let initialState = {
 
 export const fetchCart = userId => {
   return async dispatch => {
-    const {data} = await axios.get(`/api/orders/${userId}`)
-    dispatch(getCart(data[0]))
+    try {
+      const {data} = await axios.get(`/api/orders/${userId}`)
+      dispatch(getCart(data[0]))
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -40,23 +46,20 @@ export const setCartQuantity = quantity => {
 }
 
 export const addToCartThunk = (cart, fruit, quantitySelected) => {
-  let newOrderItem = {
-    orderId: cart.id,
-    fruitId: fruit.id,
-    quantity: quantitySelected,
-    price: quantitySelected * fruit.price
+  return async dispatch => {
+    try {
+      let newOrderItem = {
+        orderId: cart.id,
+        fruitId: fruit.id,
+        quantity: quantitySelected,
+        price: quantitySelected * fruit.price
+      }
+      const {data} = await axios.post('/api/order-items', newOrderItem)
+      dispatch(addToCart(data))
+    } catch (error) {
+      console.log(error)
+    }
   }
-  console.log('new order item', newOrderItem)
-  return dispatch => {
-    dispatch(addToCart(newOrderItem))
-  }
-
-  // the cart item can't be stored in the database yet because the express route doesn't work
-  // for now, this thunk just adds the cart item to the redux store
-  // return async dispatch => {
-  //   const {data} = await axios.post('/api/order-items/', newOrderItem)
-  //   dispatch(addToCart(newOrderItem))
-  // }
 }
 
 export default function(state = initialState, action) {
@@ -66,7 +69,7 @@ export default function(state = initialState, action) {
     case ADD_TO_CART:
       return {
         ...state,
-        cartItems: [action.newOrderItem],
+        cartItems: [...state.cartItems, action.data],
         quantitySelected: 1
       }
     case SET_QUANTITY:

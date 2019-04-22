@@ -22,7 +22,7 @@ class AddCartItem extends React.Component {
           <button
             type="submit"
             onClick={() => {
-              addToCartThunk(
+              this.props.addToCartThunk(
                 this.props.cart,
                 fruit,
                 this.props.quantitySelected
