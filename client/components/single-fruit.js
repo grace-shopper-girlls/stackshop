@@ -27,8 +27,8 @@ class SingleFruit extends React.Component {
         <img className="singleFruitImage" src={fruit.imageUrl} />
         <h1 className="fruitName"> {fruit.name} </h1>
         <h3> Description: {fruit.description} </h3>
-        <h2> Price: $ {formatPrice(fruit.price)} </h2>
-        <h2> Quantity Available: {fruit.quantity} </h2>
+        <h3> Price: {formatPrice(fruit.price)} </h3>
+        <h3> Quantity Available: {fruit.quantity} </h3>
         <AddCartItem fruit={fruit} />
       </div>
     )
