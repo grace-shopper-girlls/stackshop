@@ -6,7 +6,6 @@ module.exports = router
 router.post('/', async (req, res, next) => {
   try {
     const {orderId, fruitId, quantity, price} = req.body
-
     const newOrderItem = await OrderItem.create({
       orderId,
       fruitId,

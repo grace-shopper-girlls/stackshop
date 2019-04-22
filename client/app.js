@@ -6,12 +6,14 @@ import Routes from './routes'
 const App = () => {
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
-      <div className="main">
-        <Routes />
-      </div>
+      <main>
+        <div>
+          <Navbar />
+        </div>
+        <div className="main">
+          <Routes />
+        </div>
+      </main>
     </div>
   )
 }
