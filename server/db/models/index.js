@@ -6,9 +6,6 @@ const OrderItem = require('./orderItem')
 Order.belongsToMany(Fruit, {through: OrderItem})
 Fruit.belongsToMany(Order, {through: OrderItem})
 
-OrderItem.belongsTo(Order)
-Order.hasMany(OrderItem)
-
 Order.belongsTo(User)
 User.hasMany(Order)
 

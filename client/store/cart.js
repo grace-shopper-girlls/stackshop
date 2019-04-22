@@ -41,7 +41,7 @@ export const setCartQuantity = quantity => {
 
 export const addToCartThunk = (cart, fruit, quantitySelected) => {
   let newOrderItem = {
-    cartId: cart.id,
+    orderId: cart.id,
     fruitId: fruit.id,
     quantity: quantitySelected,
     price: quantitySelected * fruit.price

@@ -5,11 +5,11 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
+  <div id="navbar">
     <nav>
-      <h1>Welcome to Cute Fruits!</h1>
+      <span className="nav-logo">Cute Fruits!</span>
       {isLoggedIn ? (
-        <div>
+        <div className="nav-buttons">
           {/* The navbar will show these links after you log in */}
           <Link to="/">All Fruits</Link>
           <Link to="/home">Home</Link>
@@ -17,25 +17,17 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             Logout
           </a>
           <Link to="/cart">
-            View cart
-            <img
-              className="cartImage"
-              src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-11.png"
-            />
+            <img className="cartImage" src="shopping_cart.png" />
           </Link>
         </div>
       ) : (
-        <div>
+        <div className="nav-buttons">
           {/* The navbar will show these links before you log in */}
           <Link to="/">All Fruits</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
           <Link to="/cart">
-            View cart
-            <img
-              className="cartImage"
-              src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-11.png"
-            />
+            <img className="cartImage" src="shopping_cart.png" />
           </Link>
         </div>
       )}

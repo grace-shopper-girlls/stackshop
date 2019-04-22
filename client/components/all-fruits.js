@@ -21,18 +21,22 @@ class AllFruits extends React.Component {
       <Loading />
     ) : (
       <div>
-        <h1>Cute Fruits:</h1>
-        {fruits.map(fruit => {
-          return (
-            <div key={fruit.id}>
-              <Link to={`/fruits/${fruit.id}`}>
-                <h3>{fruit.name}</h3>
-                <img className="fruitImage" src={fruit.imageUrl} />
-              </Link>
-              <AddCartItem fruit={fruit} />
-            </div>
-          )
-        })}
+        <h2>{fruits.length} Fruits Available:</h2>
+        <div id="all-fruit">
+          {fruits.map(fruit => {
+            return (
+              <div className="fruit-row" key={fruit.id}>
+                <Link to={`/fruits/${fruit.id}`}>
+                  <h3 className="fruit-name">{fruit.name}</h3>
+                  <img className="fruitThumb" src={fruit.imageUrl} />
+                  <h5 className="fruit-price">price: {fruit.price}</h5>
+                </Link>
+
+                <AddCartItem fruit={fruit} />
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }
