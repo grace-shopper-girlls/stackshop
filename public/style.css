@@ -92,8 +92,8 @@ form div {
   height: 125px;
 }
 
-.zoomFruitImage {
-  max-width: 600px;
+.singleFruitImage {
+  max-width: 500px;
   height: auto;
 }
 
