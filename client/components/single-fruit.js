@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import {fetchFruit} from '../store/fruits'
 import AddCartItem from './cart-item-add'
 import Loading from './loading'
+import {formatPrice} from '../../utils'
 
 class SingleFruit extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class SingleFruit extends React.Component {
         <img className="singleFruitImage" src={fruit.imageUrl} />
         <h1 className="fruitName"> {fruit.name} </h1>
         <h3> Description: {fruit.description} </h3>
-        <h2> Price: $ {fruit.price} </h2>
+        <h2> Price: $ {formatPrice(fruit.price)} </h2>
         <h2> Quantity Available: {fruit.quantity} </h2>
         <AddCartItem fruit={fruit} />
       </div>
