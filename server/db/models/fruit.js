@@ -4,8 +4,7 @@ const db = require('../db')
 const Fruit = db.define('fruit', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
-    unique: true
+    allowNull: false
   },
   price: {
     type: Sequelize.FLOAT,
