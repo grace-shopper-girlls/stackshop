@@ -8,40 +8,20 @@ class Cart extends React.Component {
     super()
     this.state = {
       cart: {},
-      orderItems: []
+      orderItems: [],
+      id: null
     }
   }
 
   componentDidMount() {
+    let id = this.state.id
     this.props.fetchCart(1)
     // ^^ this is just hardcoded for now because I don't know where the logged in user's id lives
   }
 
   render() {
     const cart = this.state.cart
-    // const items = this.state.orderItems
-    const items = [
-      {
-        fruitId: 1,
-        quantity: 14,
-        price: 25.48,
-        fruit: {
-          name: 'apple',
-          price: 1.82,
-          imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bananas.svg/2560px-Bananas.svg.png'
-        }
-      },
-      {
-        fruitId: 2,
-        quantity: 2,
-        price: 0.98,
-        fruit: {
-          name: 'banana',
-          price: 0.49
-        }
-      }
-    ]
+    const items = this.state.orderItems
 
     return (
       <div>
@@ -51,10 +31,12 @@ class Cart extends React.Component {
         <p>Grand Total: {cart.grandTotal}</p>
 
         <h1>Items</h1>
+        {console.log('the state is ', this.state)}
+        {console.log('the state.id is ', this.state.id)}
         {!items.length ? (
           <p>Cart is empty</p>
         ) : (
-          <h2> {items.length} items in cart</h2>
+          <h2> {items.length} Items in Cart</h2>
         )}
         {items.map(item => {
           return <CartItem key={item.id} item={item} />
@@ -67,7 +49,9 @@ class Cart extends React.Component {
 const mapState = state => {
   return {
     cart: state.cart.cart,
-    orderItems: state.cart.cart.orderItems
+    orderItems: state.cart.cart.orderItems,
+    // id: state.user.id
+    id: 1
   }
 }
 
