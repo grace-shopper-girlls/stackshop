@@ -2,28 +2,25 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store'
 import CartItem from './cart-item'
+import Loading from './loading'
 
 class Cart extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      cart: {},
-      orderItems: [],
-      id: null
-    }
+  constructor(props) {
+    super(props)
   }
 
   componentDidMount() {
-    let id = this.state.id
     this.props.fetchCart(1)
-    // ^^ this is just hardcoded for now because I don't know where the logged in user's id lives
   }
 
   render() {
-    const cart = this.state.cart
-    const items = this.state.orderItems
+    const cart = this.props.cart
+    const items = this.props.orderItems
+    const loading = this.props.loading
 
-    return (
+    return loading ? (
+      <Loading />
+    ) : (
       <div>
         <h1>Cart</h1>
         <p>Subtotal: {cart.subtotal}</p>
@@ -31,8 +28,6 @@ class Cart extends React.Component {
         <p>Grand Total: {cart.grandTotal}</p>
 
         <h1>Items</h1>
-        {console.log('the state is ', this.state)}
-        {console.log('the state.id is ', this.state.id)}
         {!items.length ? (
           <p>Cart is empty</p>
         ) : (
@@ -48,10 +43,9 @@ class Cart extends React.Component {
 
 const mapState = state => {
   return {
+    loading: state.cart.loading,
     cart: state.cart.cart,
-    orderItems: state.cart.cart.orderItems,
-    // id: state.user.id
-    id: 1
+    orderItems: state.cart.orderItems
   }
 }
 

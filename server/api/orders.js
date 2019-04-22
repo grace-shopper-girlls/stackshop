@@ -5,16 +5,17 @@ module.exports = router
 
 router.get('/:userId', async (req, res, next) => {
   try {
-    const cart = await Order.findOrCreate({
+    const order = await Order.findOrCreate({
       where: {
         userId: req.params.userId,
         orderSubmitted: false
-      },
-      include: [{model: OrderItem}]
+      }
     })
-    res.json(cart)
+
+    const orderItems = await OrderItem.findAll({where: {orderId: order.id}})
+
+    res.json({order, orderItems})
   } catch (err) {
     next(err)
   }
 })
-
