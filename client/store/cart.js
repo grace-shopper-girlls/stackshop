@@ -4,6 +4,7 @@ const GETTING_CART = 'GETTING_CART'
 const GOT_CART = 'GOT_CART'
 const SET_QUANTITY = 'SET_QUANTITY'
 const ADD_TO_CART = 'ADD_TO_CART'
+const REMOVE_ORDERITEM = 'REMOVE_ORDERITEM'
 
 const gettingCart = () => ({
   type: GETTING_CART
@@ -22,6 +23,11 @@ const setQuantity = quantity => ({
 const addToCart = data => ({
   type: ADD_TO_CART,
   data
+})
+
+const removeOrderItem = id => ({
+  type: REMOVE_ORDERITEM,
+  id
 })
 
 let initialState = {
@@ -68,6 +74,17 @@ export const addToCartThunk = (cart, fruit, quantitySelected) => {
       const {data} = await axios.post('/api/order-items', newOrderItem)
 
       dispatch(addToCart(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const removesOrderItem = id => {
+  return async dispatch => {
+    try {
+      await axios.delete(`api/order-items/${id}`)
+      dispatch(removeOrderItem(id))
     } catch (error) {
       console.log(error)
     }
