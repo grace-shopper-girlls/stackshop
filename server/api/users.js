@@ -15,3 +15,16 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:email', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: req.params.email
+      }
+    })
+    res.json(user)
+  } catch (error) {
+    next(error)
+  }
+})
