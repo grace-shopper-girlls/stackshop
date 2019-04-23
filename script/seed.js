@@ -48,14 +48,15 @@ const fruits = [
     price: 6.7,
     description: 'A refreshing summer fruit!',
     imageUrl:
-      'https://images.pexels.com/photos/1313267/pexels-photo-1313267.jpeg?cs=srgb&dl=food-fruit-green-1313267.jpg&fm=jpg',
+      'https://newschoolselling.com/wp-content/uploads/2017/08/watermelons-1030x824.jpg',
     quantity: 11
   },
   {
     name: 'Kiwi',
     price: 0.75,
     description: 'A green fruit.',
-    imageUrl: 'https://www.lequzhai.com/WDF-497429.html',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/d/d3/Kiwi_aka.jpg',
     quantity: 7
   },
   {
@@ -94,7 +95,8 @@ const fruits = [
     name: 'Grapes',
     price: 4.1,
     description: 'A bunchy fruit, available in green or red.',
-    imageUrl: 'https://www.lequzhai.com/WDF-497427.html',
+    imageUrl:
+      'http://www.suiderlandplase.co.za/wp-content/uploads/2014/08/products-grapes.png',
     quantity: 20
   }
 ]

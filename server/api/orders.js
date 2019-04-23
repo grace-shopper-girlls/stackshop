@@ -20,15 +20,17 @@ router.get('/:userId', async (req, res, next) => {
 })
 
 //for when logged-in user submits an order
-router.put('/', async (req, res, next) => {
-  let body = req.body
+router.put('/:orderId', async (req, res, next) => {
   try {
-    await Order.update({
-      where: {
-        id: body.id
-      },
-      orderSubmitted: true
-    })
+    await Order.update(
+      {orderSubmitted},
+      {
+        where: {
+          id: req.params.orderId
+        }
+      }
+    )
+    res.sendStatus(204)
   } catch (error) {
     next(error)
   }
