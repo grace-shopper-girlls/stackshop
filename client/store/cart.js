@@ -104,6 +104,9 @@ export const removesOrderItem = id => {
     } catch (error) {
       console.log(error)
     }
+  }
+}
+
 export const checkOut = () => {
   return dispatch => {
     dispatch(checkingOut())
