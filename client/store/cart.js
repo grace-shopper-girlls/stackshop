@@ -52,6 +52,7 @@ export const setCartQuantity = quantity => {
 
 export const addToCartThunk = (cart, fruit, quantitySelected) => {
   return async dispatch => {
+    console.log('addtocarthunk reached!')
     try {
       let newOrderItem = {
         orderId: cart.id,
