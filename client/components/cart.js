@@ -14,7 +14,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    const {cart, loading, orderItems: items} = this.props
+    const {cart, loading, cartItems} = this.props
     return loading ? (
       <Loading />
     ) : (
@@ -25,13 +25,13 @@ class Cart extends React.Component {
         <p>Grand Total: {cart.grandTotal}</p>
 
         <h1>Items</h1>
-        {!items.length ? (
+        {!cartItems.length ? (
           <p>Cart is empty</p>
         ) : (
-          <h2> {items.length} Types of Fruit in Cart</h2>
+          <h2> {cartItems.length} Types of Fruit in Cart</h2>
         )}
-        {items.map(item => {
-          return <CartItem key={item.id} item={item} />
+        {cartItems.map(item => {
+          return <CartItem key={item.fruitId} item={item} />
         })}
       </div>
     )
@@ -42,7 +42,7 @@ const mapState = state => {
   return {
     loading: state.cart.loading,
     cart: state.cart.cart,
-    orderItems: state.cart.cart.orderItems,
+    cartItems: state.cart.cartItems,
     user: state.user
   }
 }
