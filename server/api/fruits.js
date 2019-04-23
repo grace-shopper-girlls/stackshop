@@ -4,7 +4,9 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const fruits = await Fruit.findAll()
+    const fruits = await Fruit.findAll({
+      order: [['name', 'ASC']]
+    })
     res.json(fruits)
   } catch (error) {
     next(error)
