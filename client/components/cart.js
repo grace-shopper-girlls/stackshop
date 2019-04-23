@@ -1,12 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, me} from '../store'
+import {fetchCart, me, checkOut} from '../store'
 import CartItem from './cart-item'
+import CheckoutButton from './checkout'
 import Loading from './loading'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      checkingOut: false
+    }
   }
 
   componentDidMount() {
@@ -34,7 +38,12 @@ class Cart extends React.Component {
         {items.map(item => {
           return <CartItem key={item.id} item={item} />
         })}
+        <CheckoutButton />
+
+        
+
       </div>
+
     )
   }
 }
@@ -44,13 +53,14 @@ const mapState = state => {
     loading: state.cart.loading,
     cart: state.cart.cart,
     orderItems: state.cart.cart.orderItems,
-    user: state.user.defaultUser
+    user: state.user.defaultUser,
+    checkingout: state.cart.checkingOut
   }
 }
 
 const mapDispatch = dispatch => ({
   fetchCart: userId => dispatch(fetchCart(userId)),
-  me: () => dispatch(me())
+  me: () => dispatch(me()),
 })
 
 export default connect(mapState, mapDispatch)(Cart)

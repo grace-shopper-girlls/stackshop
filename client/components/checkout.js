@@ -1,37 +1,37 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import CheckoutUser from './checkout-user'
+// import React from 'react'
+// import {connect} from 'react-redux'
+// import CheckoutUser from './checkout-user'
 
-const Checkout = props => {
-  const {user} = props
-  return (
-    <div>
-      <h1>Checkout</h1>
+// const Checkout = props => {
+//   const {user} = props
+//   return (
+//     <div>
+//       <h1>Checkout</h1>
 
-      <div id="checkout">{<CheckoutUser user={user} />}</div>
-    </div>
-  )
-}
+//       <div id="checkout">{<CheckoutUser user={user} />}</div>
+//     </div>
+//   )
+// }
 
-const mapState = state => {
-  return {
-    user: state.user
-  }
-}
+// const mapState = state => {
+//   return {
+//     user: state.user
+//   }
+// }
 
-// const mapDispatch = dispatch => ({
-//   deleteCartItem: id => dispatch(deleteCartItemThunk(id))
-// })
+// // const mapDispatch = dispatch => ({
+// //   deleteCartItem: id => dispatch(deleteCartItemThunk(id))
+// // })
 
-export default connect(mapState, null)(Checkout)
+// export default connect(mapState, null)(Checkout)
 
-// // if guest
+// // // if guest
 
-// // if logged in:
-{
-  /* <CheckoutUser /> */
-}
+// // // if logged in:
+// {
+//   /* <CheckoutUser /> */
+// }
 
-// <CheckoutCartSummary />
+// // <CheckoutCartSummary />
 
-// <CheckoutSubmitButton />
+// // <CheckoutSubmitButton />
