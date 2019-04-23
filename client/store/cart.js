@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import axios from 'axios'
 
 const GETTING_CART = 'GETTING_CART'
@@ -46,6 +47,9 @@ const removeOrderItem = id => ({
 })
 
 let initialState = {
+  subTotal: 0,
+  grandTotal: 0,
+  shippingCost: 0,
   cart: {},
   cartItems: [],
   quantitySelected: 1,
@@ -133,6 +137,9 @@ export default function(state = initialState, action) {
     case ADD_TO_CART:
       return {
         ...state,
+        subTotal: state.subTotal + action.data.price,
+        shippingCost: state.shippingCost + 0.25,
+        grandTotal: state.grandTotal + action.data.price + 0.25,
         cartItems: [...state.cartItems, action.data],
         quantitySelected: 1
       }
