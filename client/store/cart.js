@@ -109,7 +109,11 @@ export default function(state = initialState, action) {
       }
     case SET_QUANTITY:
       return {...state, quantitySelected: action.quantity}
-
+    case REMOVE_ORDERITEM:
+      const nextOrderItems = state.cartItems.filter(
+        orderItem => orderItem.id !== action.id
+      )
+      return {...state, cartItems: nextOrderItems}
     default:
       return state
   }
