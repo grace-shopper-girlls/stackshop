@@ -27,6 +27,38 @@ const fruits = [
     imageUrl:
       'http://www.dreams.metroeve.com/wp-content/uploads/2017/10/www.dreams.metroeve.com-mango-dreams-meaning.jpg',
     quantity: 6
+  },
+  {
+    name: 'orange',
+    price: 3.29,
+    description: 'An delicously citrus fruit.',
+    imageUrl:
+      'https://images.pexels.com/photos/161559/background-bitter-breakfast-bright-161559.jpeg?cs=srgb&dl=citrus-close-up-delicious-161559.jpg&fm=jpg',
+    quantity: 8
+  },
+  {
+    name: 'Cherries',
+    price: 1.85,
+    description: 'As sweet as can be.',
+    imageUrl:
+      'https://images.pexels.com/photos/109274/pexels-photo-109274.jpeg?cs=srgb&dl=berry-cherries-cherry-109274.jpg&fm=jpg',
+    quantity: 2
+  },
+  {
+    name: 'Watermelon',
+    price: 6.7,
+    description: 'Refreshing!',
+    imageUrl:
+      'https://images.pexels.com/photos/1313267/pexels-photo-1313267.jpeg?cs=srgb&dl=food-fruit-green-1313267.jpg&fm=jpg',
+    quantity: 11
+  },
+  {
+    name: 'Kiwi',
+    price: 0.75,
+    description: 'A green fruit.',
+    imageUrl:
+      'https://images.pexels.com/photos/51312/kiwi-fruit-vitamins-healthy-eating-51312.jpeg?cs=srgb&dl=food-fresh-fruit-51312.jpg&fm=jpg',
+    quantity: 7
   }
 ]
 
