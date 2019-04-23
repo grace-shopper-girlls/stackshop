@@ -18,15 +18,22 @@ class Cart extends React.Component {
   }
 
   render() {
-    const {cart, loading, cartItems} = this.props
+    const {
+      cart,
+      loading,
+      cartItems,
+      shippingCost,
+      subTotal,
+      grandTotal
+    } = this.props
     return loading ? (
       <Loading />
     ) : (
       <div>
         <h1>Cart</h1>
-        <p>Subtotal: {cart.subtotal}</p>
-        <p>Shipping: {cart.shippingCost}</p>
-        <p>Grand Total: {cart.grandTotal}</p>
+        <p>Subtotal: {subTotal}</p>
+        <p>Shipping: {shippingCost}</p>
+        <p>Grand Total: {grandTotal}</p>
 
         <h1>Items</h1>
         {!cartItems.length ? (
@@ -51,6 +58,9 @@ class Cart extends React.Component {
 const mapState = state => {
   return {
     loading: state.cart.loading,
+    subTotal: state.subTotal,
+    shippingCost: state.shippingCost,
+    grandTotal: state.grandTotal,
     cart: state.cart.cart,
     cartItems: state.cart.cartItems,
     checkingOut: state.cart.checkingOut,
