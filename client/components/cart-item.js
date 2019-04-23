@@ -10,14 +10,16 @@ class CartItem extends React.Component {
   }
 
   render() {
-    const {item, fruit, loading} = this.props
-
+    const {item, fruits, loading} = this.props
+    const fruit = fruits.find(fruitEl => {
+      return fruitEl.id === item.fruitId
+    })
     if (loading) {
       return <Loading />
     } else {
       return (
         <div key={item.fruitId}>
-          <img className="cartThumbnail" src={item.imageUrl} />
+          <img className="cartThumbnail" src={fruit.imageUrl} />
           <h3>{fruit.name}</h3>
           <p>quantity: {item.quantity}</p>
           <p>total price: {item.price}</p>
@@ -30,8 +32,7 @@ class CartItem extends React.Component {
 
 const mapState = state => {
   return {
-    loading: state.fruits.loading,
-    fruit: state.fruits.selected
+    loading: state.fruits.loading
   }
 }
 

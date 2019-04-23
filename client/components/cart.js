@@ -18,7 +18,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    const {cart, loading, cartItems} = this.props
+    const {cart, loading, cartItems, fruits} = this.props
     return loading ? (
       <Loading />
     ) : (
@@ -35,7 +35,7 @@ class Cart extends React.Component {
           <h2> {cartItems.length} Types of Fruit in Cart</h2>
         )}
         {cartItems.map(item => {
-          return <CartItem key={item.fruitId} item={item} />
+          return <CartItem key={item.fruitId} item={item} fruits={fruits} />
         })}
         <CheckoutButton />
         {this.props.checkingOut ? (
@@ -54,7 +54,8 @@ const mapState = state => {
     cart: state.cart.cart,
     cartItems: state.cart.cartItems,
     checkingOut: state.cart.checkingOut,
-    user: state.user
+    user: state.user,
+    fruits: state.fruits.all
   }
 }
 
