@@ -19,7 +19,6 @@ class Cart extends React.Component {
   }
 
   render() {
-    console.log('this.props are ', this.props)
     const {
       cart,
       loading,
@@ -41,7 +40,7 @@ class Cart extends React.Component {
         {!cartItems.length ? (
           <p>Cart is empty</p>
         ) : (
-          <h2> {cartItems.length} Types of Fruit in Cart</h2>
+          <h2> {cartItems.length} Type(s) of Fruit in Cart</h2>
         )}
         {cartItems.map(item => {
           return <CartItem key={item.fruitId} item={item} />
