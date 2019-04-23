@@ -9,12 +9,11 @@ router.get('/:userId', async (req, res, next) => {
       where: {
         userId: req.params.userId,
         orderSubmitted: false
-      }
+      },
+      include: [OrderItem]
     })
 
-    const orderItems = await OrderItem.findAll({where: {orderId: order.id}})
-
-    res.json({order, orderItems})
+    res.json({order})
   } catch (err) {
     next(err)
   }

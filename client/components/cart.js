@@ -15,9 +15,8 @@ class Cart extends React.Component {
 
   render() {
     const cart = this.props.cart
-    const items = this.props.orderItems
     const loading = this.props.loading
-
+    const items = this.props.orderItems
     return loading ? (
       <Loading />
     ) : (
@@ -45,7 +44,7 @@ const mapState = state => {
   return {
     loading: state.cart.loading,
     cart: state.cart.cart,
-    orderItems: state.cart.orderItems
+    orderItems: state.cart.cart.orderItems
   }
 }
 
