@@ -1,22 +1,29 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CheckoutUser from './checkout-user'
-import Cart from './cart'
 
-const Checkout = () => {
+const Checkout = props => {
+  const {user} = props
   return (
     <div>
-      {<CheckoutUser />}
-      {/* {<Cart />} */}
+      <h1>Checkout</h1>
+
+      <div id="checkout">{<CheckoutUser user={user} />}</div>
     </div>
   )
+}
+
+const mapState = state => {
+  return {
+    user: state.user
+  }
 }
 
 // const mapDispatch = dispatch => ({
 //   deleteCartItem: id => dispatch(deleteCartItemThunk(id))
 // })
 
-export default connect(null, null)(Checkout)
+export default connect(mapState, null)(Checkout)
 
 // // if guest
 
