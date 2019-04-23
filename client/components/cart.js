@@ -42,7 +42,11 @@ class Cart extends React.Component {
           return <CartItem key={item.id} item={item} />
         })}
         <CheckoutButton />
-        {this.props.checkingOut ? <CheckoutForm /> : <div>Hello</div>}
+        {this.props.checkingOut ? (
+          <CheckoutForm history={this.props.history} />
+        ) : (
+          <div />
+        )}
       </div>
     )
   }

@@ -45,6 +45,7 @@ class CheckoutUser extends React.Component {
   }
 
   render() {
+    console.log('this.props on checkout user form is ', this.props)
     return (
       <div id="checkout-user">
         <h1>Buyer Information</h1>
@@ -92,6 +93,7 @@ const mapState = state => {
     // order: state.order,
     // orderItems: state.order.orderItems,
     checkingOut: state.cart.checkingOut
+    // history: ownProps.history
   }
 }
 
