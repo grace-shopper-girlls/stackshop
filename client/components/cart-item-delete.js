@@ -1,17 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
-// import {deleteCartItemThunk} from '../store/cart'
-// ^^^ create that in the cart redux
+import {removesOrderItem} from '../store/cart'
 
 const DeleteCartItem = props => {
-  const {id, deleteCartItem} = props
+  const {id} = props
   return (
     <div>
-      {/* do we want the user to be able to select the amount to delete from the cart? */}
       <button
         type="submit"
         onClick={() => {
-          deleteCartItem(id)
+          props.removesOrderItem(id)
         }}
       >
         Remove from Cart
@@ -21,7 +19,7 @@ const DeleteCartItem = props => {
 }
 
 const mapDispatch = dispatch => ({
-  deleteCartItem: id => dispatch(deleteCartItemThunk(id))
+  removesOrderItem: id => dispatch(removesOrderItem(id))
 })
 
 export default connect(null, mapDispatch)(DeleteCartItem)

@@ -27,7 +27,7 @@ class CartItem extends React.Component {
           <h3>{fruit.name}</h3>
           <p>quantity: {item.quantity}</p>
           <p>total price: {item.price}</p>
-          <DeleteCartItem id={item.id} />
+          <DeleteCartItem id={item.fruitId} />
         </div>
       )
     }
