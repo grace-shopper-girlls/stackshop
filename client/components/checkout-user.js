@@ -1,8 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link, Redirect} from 'react-router-dom'
 import {submitOrder} from '../store'
-// import CheckoutButton from './checkout-button'
 
 class CheckoutUser extends React.Component {
   constructor(props) {
@@ -41,11 +39,9 @@ class CheckoutUser extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log(this.state)
   }
 
   render() {
-    console.log('this.props on checkout user form is ', this.props)
     return (
       <div id="checkout-user">
         <h1>Buyer Information</h1>
@@ -87,13 +83,8 @@ class CheckoutUser extends React.Component {
 
 const mapState = state => {
   return {
-    // user: state.user,
-    // buyerName: `state.user.firstName state.user.lastName`,
-    // shippingAddress: state.user.address,
     cart: state.cart,
-    // orderItems: state.order.orderItems,
     checkingOut: state.cart.checkingOut
-    // history: ownProps.history
   }
 }
 

@@ -21,8 +21,6 @@ router.get('/:userId', async (req, res, next) => {
 
 //for when logged-in user submits an order
 router.put('/:orderId', async (req, res, next) => {
-  let {orderSubmitted} = req.body
-  console.log('req body ', req.body)
   try {
     await Order.update(
       {orderSubmitted},

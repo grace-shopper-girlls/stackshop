@@ -9,9 +9,6 @@ import Loading from './loading'
 class Cart extends React.Component {
   constructor(props) {
     super(props)
-    // this.state = {
-    //   checkingOut: false
-    // }
   }
 
   componentDidMount() {
@@ -21,7 +18,6 @@ class Cart extends React.Component {
   }
 
   render() {
-    console.log('this.props is ', this.props)
     const {cart, loading, orderItems: items} = this.props
     return loading ? (
       <Loading />
