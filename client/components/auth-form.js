@@ -7,7 +7,6 @@ import {auth, fetchCart} from '../store'
  * COMPONENT
  */
 const AuthForm = props => {
-  console.log('props are ', props)
   const {name, displayName, handleSubmit, error} = props
   return (
     <div>
