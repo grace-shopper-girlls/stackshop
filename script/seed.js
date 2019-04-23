@@ -1,11 +1,12 @@
 const Fruit = require('../server/db/models/fruit')
 const User = require('../server/db/models/user')
+const Order = require('../server/db/models/order')
 const db = require('../server/db/db')
 const {green} = require('chalk')
 
 const fruits = [
   {
-    name: 'banana',
+    name: 'Banana',
     price: 1.0,
     description: 'A yellow tropical fruit.',
     imageUrl:
@@ -13,7 +14,7 @@ const fruits = [
     quantity: 10
   },
   {
-    name: 'raspberry',
+    name: 'Raspberry',
     price: 0.5,
     description: 'A red berry fruit.',
     imageUrl:
@@ -21,12 +22,81 @@ const fruits = [
     quantity: 30
   },
   {
-    name: 'mango',
+    name: 'Mango',
     price: 5.0,
     description: 'An orange tropical fruit.',
-    imageUrl:
-      'http://www.dreams.metroeve.com/wp-content/uploads/2017/10/www.dreams.metroeve.com-mango-dreams-meaning.jpg',
+    imageUrl: 'https://www.punmiris.com/himg/o.14680.jpg',
     quantity: 6
+  },
+  {
+    name: 'Orange',
+    price: 3.29,
+    description: 'An delicously citrus fruit.',
+    imageUrl:
+      'https://images.pexels.com/photos/161559/background-bitter-breakfast-bright-161559.jpeg?cs=srgb&dl=citrus-close-up-delicious-161559.jpg&fm=jpg',
+    quantity: 8
+  },
+  {
+    name: 'Cherries',
+    price: 1.85,
+    description: 'As sweet as can be.',
+    imageUrl:
+      'https://images.pexels.com/photos/109274/pexels-photo-109274.jpeg?cs=srgb&dl=berry-cherries-cherry-109274.jpg&fm=jpg',
+    quantity: 2
+  },
+  {
+    name: 'Watermelon',
+    price: 6.7,
+    description: 'A refreshing summer fruit!',
+    imageUrl:
+      'https://images.pexels.com/photos/1313267/pexels-photo-1313267.jpeg?cs=srgb&dl=food-fruit-green-1313267.jpg&fm=jpg',
+    quantity: 11
+  },
+  {
+    name: 'Kiwi',
+    price: 0.75,
+    description: 'A green fruit.',
+    imageUrl: 'https://www.lequzhai.com/WDF-497429.html',
+    quantity: 7
+  },
+  {
+    name: 'Pineapple',
+    price: 3.75,
+    description: 'A sweet yellow fruit with a prickly skin.',
+    imageUrl:
+      'https://3.imimg.com/data3/EL/NB/MY-9608713/pine-apple-500x500.png',
+    quantity: 15
+  },
+  {
+    name: 'Pomegranate',
+    price: 4.0,
+    description: 'A fruit juicy and rich in flavor.',
+    imageUrl:
+      'https://3.imimg.com/data3/UK/OY/MY-9608713/pomegranates-500x500.png',
+    quantity: 21
+  },
+  {
+    name: 'Lime',
+    price: 4.0,
+    description:
+      'This fruit, which contain vitamins, minerals and many other essential elements, are available throughout the year.',
+    imageUrl:
+      'https://3.imimg.com/data3/EV/DI/MY-9608713/sweet-lime-500x500.png',
+    quantity: 16
+  },
+  {
+    name: 'Apple',
+    price: 2.33,
+    description: 'A classic fruit available in a variety of colors.',
+    imageUrl: 'https://3.imimg.com/data3/PG/SU/MY-9608713/apple-500x500.png',
+    quantity: 5
+  },
+  {
+    name: 'Grapes',
+    price: 4.1,
+    description: 'A bunchy fruit, available in green or red.',
+    imageUrl: 'https://www.lequzhai.com/WDF-497427.html',
+    quantity: 20
   }
 ]
 
@@ -75,6 +145,31 @@ const users = [
   }
 ]
 
+const orders = [
+  {
+    orderDate: '4 / 23 / 18',
+    orderSubmitted: true,
+    buyerName: 'Jane Doe',
+    shippingAddress: '123 Mercedes Way, NY, NY 10002',
+    billingAddress: '',
+    email: 'janeDoe@yahoo.com',
+    subtotal: 21.12,
+    shippingCost: 1,
+    grandTotal: 22.12
+  },
+  {
+    orderDate: '4 / 23 / 18',
+    orderSubmitted: false,
+    buyerName: 'Joe Doe',
+    shippingAddress: '123 Mercedes Way, NY, NY 10002',
+    billingAddress: '',
+    email: 'joeDoe@yahoo.com',
+    subtotal: 100.16,
+    shippingCost: 0,
+    grandTotal: 100.16
+  }
+]
+
 async function seed() {
   try {
     await db.sync({force: true})
@@ -82,7 +177,8 @@ async function seed() {
 
     const [fruit, user] = await Promise.all([
       Fruit.bulkCreate(fruits, {returning: true}),
-      User.bulkCreate(users, {returning: true})
+      User.bulkCreate(users, {returning: true}),
+      Order.bulkCreate(orders, {returning: true})
     ])
 
     console.log(green('Seeding successful!!'))
