@@ -23,6 +23,7 @@ class AddCartItem extends React.Component {
             type="submit"
             onClick={() => {
               console.log('button was clicked!!')
+              console.log('this.props.cart is ', this.props.cart)
               this.props.addToCartThunk(
                 this.props.cart,
                 fruit,

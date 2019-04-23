@@ -15,10 +15,10 @@ class AllFruits extends React.Component {
 
   componentDidMount() {
     this.props.fetchFruits()
-    console.log('this.props is ', this.props)
-    // if (user.id) {
-    //   this.props.fetchCart(user.id)
-    // }
+    if (user.id) {
+      this.props.fetchCart(user.id)
+    }
+    console.log('props on all fruits ', this.props)
   }
 
   render() {

@@ -10,8 +10,7 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-    // const id = this.props.user.id
-    this.props.fetchCart(1)
+    this.props.fetchCart(this.props.user.id)
   }
 
   render() {
@@ -44,7 +43,7 @@ const mapState = state => {
     loading: state.cart.loading,
     cart: state.cart.cart,
     orderItems: state.cart.cart.orderItems,
-    user: state.user.defaultUser
+    user: state.user
   }
 }
 
