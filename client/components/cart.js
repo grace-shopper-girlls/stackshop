@@ -29,7 +29,7 @@ class Cart extends React.Component {
         {!items.length ? (
           <p>Cart is empty</p>
         ) : (
-          <h2> {items.length} Items in Cart</h2>
+          <h2> {items.length} Types of Fruit in Cart</h2>
         )}
         {items.map(item => {
           return <CartItem key={item.id} item={item} />
