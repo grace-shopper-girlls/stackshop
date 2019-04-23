@@ -56,7 +56,8 @@ const fruits = [
     name: 'Kiwi',
     price: 0.75,
     description: 'A green fruit.',
-    imageUrl: 'https://www.lequzhai.com/WDF-497429.html',
+    imageUrl:
+      'https://5.imimg.com/data5/KU/QG/MY-41533060/kiwi-fruit-500x500.jpg',
     quantity: 7
   },
   {
@@ -95,7 +96,8 @@ const fruits = [
     name: 'Grapes',
     price: 4.1,
     description: '',
-    imageUrl: 'https://www.lequzhai.com/WDF-497427.html',
+    imageUrl:
+      'https://s3-eu-west-1.amazonaws.com/media.santu.com/2876/grapes_13621922962518.jpg',
     quantity: 20
   }
 ]
