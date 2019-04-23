@@ -14,8 +14,7 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-    // const id = this.props.user.id
-    this.props.fetchCart(1)
+    this.props.fetchCart(this.props.user.id)
   }
 
   render() {
@@ -39,11 +38,7 @@ class Cart extends React.Component {
           return <CartItem key={item.id} item={item} />
         })}
         <CheckoutButton />
-
-        
-
       </div>
-
     )
   }
 }
@@ -53,14 +48,14 @@ const mapState = state => {
     loading: state.cart.loading,
     cart: state.cart.cart,
     orderItems: state.cart.cart.orderItems,
-    user: state.user.defaultUser,
-    checkingout: state.cart.checkingOut
+    checkingout: state.cart.checkingOut,
+    user: state.user
   }
 }
 
 const mapDispatch = dispatch => ({
   fetchCart: userId => dispatch(fetchCart(userId)),
-  me: () => dispatch(me()),
+  me: () => dispatch(me())
 })
 
 export default connect(mapState, mapDispatch)(Cart)

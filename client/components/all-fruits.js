@@ -5,6 +5,8 @@ import AddCartItem from './cart-item-add'
 import Loading from './loading'
 import {Link} from 'react-router-dom'
 import {formatPrice} from '../../utils'
+import {fetchCart} from '../store'
+import user from '../store/user'
 
 class AllFruits extends React.Component {
   constructor() {
@@ -13,6 +15,9 @@ class AllFruits extends React.Component {
 
   componentDidMount() {
     this.props.fetchFruits()
+    if (user.id) {
+      this.props.fetchCart(user.id)
+    }
   }
 
   render() {
@@ -48,12 +53,14 @@ class AllFruits extends React.Component {
 const mapState = state => {
   return {
     loading: state.fruits.loading,
-    fruits: state.fruits.all
+    fruits: state.fruits.all,
+    user: state.user
   }
 }
 
 const mapDispatch = dispatch => ({
-  fetchFruits: () => dispatch(fetchFruits())
+  fetchFruits: () => dispatch(fetchFruits()),
+  fetchCart: () => dispatch(fetchCart())
 })
 
 export default connect(mapState, mapDispatch)(AllFruits)

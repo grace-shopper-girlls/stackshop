@@ -48,10 +48,16 @@ let initialState = {
 }
 
 export const fetchCart = userId => {
+  let newUserId = userId
+
   return async dispatch => {
     try {
+      if (typeof userId !== 'number') {
+        const {data} = await axios.get(`/api/users/${userId}`)
+        newUserId = data.id
+      }
       dispatch(gettingCart())
-      const {data} = await axios.get(`/api/orders/${userId}`)
+      const {data} = await axios.get(`/api/orders/${newUserId}`)
       dispatch(gotCart(data.order[0]))
     } catch (error) {
       console.log(error)
