@@ -5,6 +5,9 @@ const GOT_CART = 'GOT_CART'
 const SET_QUANTITY = 'SET_QUANTITY'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_ORDERITEM = 'REMOVE_ORDERITEM'
+const CHECKING_OUT = 'CHECKING_OUT'
+const SUBMITTING_ORDER = 'SUBMITTING_ORDER'
+const ORDER_SUBMITTED = 'ORDER_SUBMITTED'
 
 const gettingCart = () => ({
   type: GETTING_CART
@@ -24,6 +27,18 @@ const addToCart = data => ({
   type: ADD_TO_CART,
   data
 })
+const checkingOut = () => ({
+  type: CHECKING_OUT
+})
+
+const submittingOrder = user => ({
+  type: SUBMITTING_ORDER,
+  user
+})
+
+const orderSubmitted = () => ({
+  type: ORDER_SUBMITTED
+})
 
 const removeOrderItem = id => ({
   type: REMOVE_ORDERITEM,
@@ -34,7 +49,8 @@ let initialState = {
   cart: {},
   cartItems: [],
   quantitySelected: 1,
-  loading: true
+  loading: true,
+  checkingOut: false
 }
 
 export const fetchCart = userId => {
@@ -88,6 +104,16 @@ export const removesOrderItem = id => {
     } catch (error) {
       console.log(error)
     }
+export const checkOut = () => {
+  return dispatch => {
+    dispatch(checkingOut())
+  }
+}
+
+export const submitOrder = orderId => {
+  return async dispatch => {
+    await axios.put(`/api/orders/${orderId}`, {data: {orderSubmitted: true}})
+    dispatch(orderSubmitted())
   }
 }
 
@@ -114,6 +140,22 @@ export default function(state = initialState, action) {
         orderItem => orderItem.id !== action.id
       )
       return {...state, cartItems: nextOrderItems}
+
+    case CHECKING_OUT:
+      return {...state, checkingOut: true}
+
+    case SUBMITTING_ORDER:
+      return {...state, cart: action.cart}
+
+    case ORDER_SUBMITTED:
+      return {
+        ...state,
+        cart: {},
+        cartItems: [],
+        loading: true,
+        checkingOut: false
+      }
+
     default:
       return state
   }

@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, me} from '../store'
+import {fetchCart, me, checkOut} from '../store'
 import CartItem from './cart-item'
+import CheckoutButton from './checkout-button'
+import CheckoutForm from './checkout-user'
 import Loading from './loading'
 
 class Cart extends React.Component {
@@ -10,7 +12,9 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchCart(this.props.user.id)
+    if (this.props.user.id) {
+      this.props.fetchCart(this.props.user.id)
+    }
   }
 
   render() {
@@ -33,6 +37,12 @@ class Cart extends React.Component {
         {cartItems.map(item => {
           return <CartItem key={item.fruitId} item={item} />
         })}
+        <CheckoutButton />
+        {this.props.checkingOut ? (
+          <CheckoutForm history={this.props.history} />
+        ) : (
+          <div />
+        )}
       </div>
     )
   }
@@ -43,6 +53,7 @@ const mapState = state => {
     loading: state.cart.loading,
     cart: state.cart.cart,
     cartItems: state.cart.cartItems,
+    checkingOut: state.cart.checkingOut,
     user: state.user
   }
 }
