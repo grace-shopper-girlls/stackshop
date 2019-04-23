@@ -139,7 +139,7 @@ export default function(state = initialState, action) {
         ...state,
         subTotal: state.subTotal + action.data.price,
         shippingCost: state.shippingCost + 0.25,
-        grandTotal: state.subTotal + state.shippingCost,
+        grandTotal: state.grandTotal + action.data.price + 0.25,
         cartItems: [...state.cartItems, action.data],
         quantitySelected: 1
       }

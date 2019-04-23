@@ -5,6 +5,7 @@ import CartItem from './cart-item'
 import CheckoutButton from './checkout-button'
 import CheckoutForm from './checkout-user'
 import Loading from './loading'
+import {formatPrice} from '../../utils'
 
 class Cart extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class Cart extends React.Component {
   }
 
   render() {
+    console.log('this.props are ', this.props)
     const {
       cart,
       loading,
@@ -31,9 +33,9 @@ class Cart extends React.Component {
     ) : (
       <div>
         <h1>Cart</h1>
-        <p>Subtotal: {subTotal}</p>
-        <p>Shipping: {shippingCost}</p>
-        <p>Grand Total: {grandTotal}</p>
+        <p>Subtotal: {formatPrice(subTotal)}</p>
+        <p>Shipping: {formatPrice(shippingCost)}</p>
+        <p>Grand Total: {formatPrice(grandTotal)}</p>
 
         <h1>Items</h1>
         {!cartItems.length ? (
@@ -58,9 +60,9 @@ class Cart extends React.Component {
 const mapState = state => {
   return {
     loading: state.cart.loading,
-    subTotal: state.subTotal,
-    shippingCost: state.shippingCost,
-    grandTotal: state.grandTotal,
+    subTotal: state.cart.subTotal,
+    shippingCost: state.cart.shippingCost,
+    grandTotal: state.cart.grandTotal,
     cart: state.cart.cart,
     cartItems: state.cart.cartItems,
     checkingOut: state.cart.checkingOut,
