@@ -18,7 +18,6 @@ class AllFruits extends React.Component {
     if (user.id) {
       this.props.fetchCart(user.id)
     }
-    console.log('props on all fruits ', this.props)
   }
 
   render() {
