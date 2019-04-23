@@ -18,3 +18,14 @@ router.post('/', async (req, res, next) => {
     console.log(err)
   }
 })
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const orderItem = await OrderItem.findById(+req.params.id)
+    if (!orderItem) return res.sendStatus(404)
+    await orderItem.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    console.log(err)
+  }
+})
