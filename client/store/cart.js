@@ -4,6 +4,7 @@ const GETTING_CART = 'GETTING_CART'
 const GOT_CART = 'GOT_CART'
 const SET_QUANTITY = 'SET_QUANTITY'
 const ADD_TO_CART = 'ADD_TO_CART'
+const REMOVE_ORDERITEM = 'REMOVE_ORDERITEM'
 const CHECKING_OUT = 'CHECKING_OUT'
 const SUBMITTING_ORDER = 'SUBMITTING_ORDER'
 const ORDER_SUBMITTED = 'ORDER_SUBMITTED'
@@ -37,6 +38,11 @@ const submittingOrder = user => ({
 
 const orderSubmitted = () => ({
   type: ORDER_SUBMITTED
+})
+
+const removeOrderItem = id => ({
+  type: REMOVE_ORDERITEM,
+  id
 })
 
 let initialState = {
@@ -90,6 +96,14 @@ export const addToCartThunk = (cart, fruit, quantitySelected) => {
   }
 }
 
+export const removesOrderItem = id => {
+  return async dispatch => {
+    try {
+      await axios.delete(`api/order-items/${id}`)
+      dispatch(removeOrderItem(id))
+    } catch (error) {
+      console.log(error)
+    }
 export const checkOut = () => {
   return dispatch => {
     dispatch(checkingOut())
@@ -121,6 +135,11 @@ export default function(state = initialState, action) {
       }
     case SET_QUANTITY:
       return {...state, quantitySelected: action.quantity}
+    case REMOVE_ORDERITEM:
+      const nextOrderItems = state.cartItems.filter(
+        orderItem => orderItem.id !== action.id
+      )
+      return {...state, cartItems: nextOrderItems}
 
     case CHECKING_OUT:
       return {...state, checkingOut: true}
