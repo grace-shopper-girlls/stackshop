@@ -1,5 +1,5 @@
 const Fruit = require('../server/db/models/fruit')
-const AuthUser = require('../server/db/models/authUser')
+const User = require('../server/db/models/user')
 const db = require('../server/db/db')
 const {green} = require('chalk')
 
@@ -114,7 +114,7 @@ async function seed() {
 
     const [fruit, user] = await Promise.all([
       Fruit.bulkCreate(fruits, {returning: true}),
-      AuthUser.bulkCreate(users, {returning: true})
+      User.bulkCreate(users, {returning: true})
     ])
 
     console.log(green('Seeding successful!!'))

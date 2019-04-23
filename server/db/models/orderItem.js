@@ -11,11 +11,7 @@ const OrderItem = db.define('orderItem', {
     }
   },
   price: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-    validate: {
-      isDecimal: true
-    }
+    type: Sequelize.FLOAT
   }
 })
 
