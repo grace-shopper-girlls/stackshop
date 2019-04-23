@@ -62,7 +62,7 @@ const fruits = [
   {
     name: 'Pineapple',
     price: 3.75,
-    description: '',
+    description: 'A sweet yellow fruit with a prickly skin.',
     imageUrl:
       'https://3.imimg.com/data3/EL/NB/MY-9608713/pine-apple-500x500.png',
     quantity: 15
@@ -87,14 +87,14 @@ const fruits = [
   {
     name: 'Apple',
     price: 2.33,
-    description: '',
+    description: 'A classic fruit available in a variety of colors.',
     imageUrl: 'https://3.imimg.com/data3/PG/SU/MY-9608713/apple-500x500.png',
     quantity: 5
   },
   {
     name: 'Grapes',
     price: 4.1,
-    description: '',
+    description: 'A bunchy fruit, available in green or red.',
     imageUrl: 'https://www.lequzhai.com/WDF-497427.html',
     quantity: 20
   }
