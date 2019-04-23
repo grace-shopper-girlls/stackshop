@@ -1,7 +1,7 @@
 import React from 'react'
 import DeleteCartItem from './cart-item-delete'
 import {connect} from 'react-redux'
-import {fetchFruits} from '../store'
+import {fetchFruit} from '../store'
 import Loading from './loading'
 
 class CartItem extends React.Component {
@@ -9,21 +9,15 @@ class CartItem extends React.Component {
     super(props)
   }
 
-  componentDidMount() {
-    this.props.fetchFruits()
-  }
-
   render() {
-    const {item, fruits, loading} = this.props
+    const {item, fruit, loading} = this.props
+
     if (loading) {
       return <Loading />
     } else {
-      const fruit = fruits.find(fruitEl => {
-        return fruitEl.id === item.fruitId
-      })
       return (
-        <div key={item.id}>
-          <img className="cartThumbnail" src={fruit.imageUrl} />
+        <div key={item.fruitId}>
+          <img className="cartThumbnail" src={item.imageUrl} />
           <h3>{fruit.name}</h3>
           <p>quantity: {item.quantity}</p>
           <p>total price: {item.price}</p>
@@ -37,12 +31,12 @@ class CartItem extends React.Component {
 const mapState = state => {
   return {
     loading: state.fruits.loading,
-    fruits: state.fruits.all
+    fruit: state.fruits.selected
   }
 }
 
 const mapDispatch = dispatch => ({
-  fetchFruits: () => dispatch(fetchFruits())
+  fetchFruit: id => dispatch(fetchFruit(id))
 })
 
 export default connect(mapState, mapDispatch)(CartItem)
