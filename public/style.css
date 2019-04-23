@@ -8,12 +8,11 @@ body {
 }
 
 main {
-  align-items: center;
+  align-items: left;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin-left: 60px;
-  margin-right: 30px;
+  margin-right: 60px;
   margin-top: 100px;
 }
 
@@ -35,16 +34,15 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
+  height: 65px;
   width: 100%;
   justify-content: space-around;
-  flex-wrap: wrap;
-  align-content: stretch;
   box-shadow: 0px 2px 5px rgba(96, 125, 139, 0.5);
 }
 
 .nav-logo {
   display: flex;
-  /* margin-left: 45; */
+  margin-left: 30;
   margin-right: 20px;
   margin-top: 4px;
   text-align: center;
@@ -59,7 +57,6 @@ nav {
   justify-content: flex-end;
   margin-right: 20px;
   margin-top: 4px;
-  /* text-align: center; */
 }
 
 nav a {
@@ -75,11 +72,6 @@ h1,
 h2 {
   font-family: 'Baloo Bhaina', cursive;
   color: rgb(65, 177, 160);
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
 }
 
 .fruitThumb {
@@ -135,4 +127,41 @@ form div {
 #checkout-cart {
   display: flex;
   text-align: left;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  text-justify: distribute-all-lines;
+  justify-content: space-around;
+  flex-grow: 2;
+  margin: 1em;
+}
+
+form input {
+  width: 50%;
+  font-size: 1em;
+}
+
+form button,
+#google {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  height: 30px;
+  /* padding: 0.4em 1.6em; */
+  background-color: rgb(65, 177, 160);
+  color: white;
+  border: none;
+  font-size: 1em;
+  transition: all 1s ease;
+  outline: none;
+}
+
+#google {
+  background-color: slategray;
+}
+
+#welcome-user {
+  color: #333333;
+  margin-top: -38px;
 }
