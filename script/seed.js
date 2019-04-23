@@ -1,5 +1,6 @@
 const Fruit = require('../server/db/models/fruit')
 const User = require('../server/db/models/user')
+const Order = require('../server/db/models/order')
 const db = require('../server/db/db')
 const {green} = require('chalk')
 
@@ -144,6 +145,31 @@ const users = [
   }
 ]
 
+const orders = [
+  {
+    orderDate: '4 / 23 / 18',
+    orderSubmitted: true,
+    buyerName: 'Jane Doe',
+    shippingAddress: '123 Mercedes Way, NY, NY 10002',
+    billingAddress: '',
+    email: 'janeDoe@yahoo.com',
+    subtotal: 21.12,
+    shippingCost: 1,
+    grandTotal: 22.12
+  },
+  {
+    orderDate: '4 / 23 / 18',
+    orderSubmitted: false,
+    buyerName: 'Joe Doe',
+    shippingAddress: '123 Mercedes Way, NY, NY 10002',
+    billingAddress: '',
+    email: 'joeDoe@yahoo.com',
+    subtotal: 100.16,
+    shippingCost: 0,
+    grandTotal: 100.16
+  }
+]
+
 async function seed() {
   try {
     await db.sync({force: true})
@@ -151,7 +177,8 @@ async function seed() {
 
     const [fruit, user] = await Promise.all([
       Fruit.bulkCreate(fruits, {returning: true}),
-      User.bulkCreate(users, {returning: true})
+      User.bulkCreate(users, {returning: true}),
+      Order.bulkCreate(orders, {returning: true})
     ])
 
     console.log(green('Seeding successful!!'))
