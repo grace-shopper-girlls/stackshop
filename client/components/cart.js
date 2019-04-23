@@ -10,13 +10,12 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
+    // const id = this.props.cart.userId
     this.props.fetchCart(1)
   }
 
   render() {
-    const cart = this.props.cart
-    const loading = this.props.loading
-    const items = this.props.orderItems
+    const {cart, loading, orderItems: items} = this.props
     return loading ? (
       <Loading />
     ) : (
