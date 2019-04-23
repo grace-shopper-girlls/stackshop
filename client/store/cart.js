@@ -96,18 +96,10 @@ export const checkOut = () => {
   }
 }
 
-export const submitOrder = order => {
-  try {
-    // if a logged in user with a cart in the db,
-    // PUT to order with final user details: shippingAddress, buyerName, etc.
-
-    // if a guest, creates a new db entry with all info currently on state
-    // POST order
-    // POST order items (create all from array)
-
-  } catch (error) {
-    console.error(error)
-  }
+export const submitOrder = () => {
+    return dispatch => {
+      dispatch(orderSubmitted())
+    }
 }
 
 export default function(state = initialState, action) {
@@ -136,7 +128,7 @@ export default function(state = initialState, action) {
       return {...state, cart: action.cart}
 
     case ORDER_SUBMITTED:
-      return {...state, cart: {}, cartItems: [], checkingOut: false}
+      return {...state, cart: {}, cartItems: [], loading: true, checkingOut: false}
 
     default:
       return state

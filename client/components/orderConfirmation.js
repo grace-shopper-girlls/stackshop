@@ -6,6 +6,7 @@ export const orderConfirmation = props => {
 
   return (
     <div>
+      <h2>Your order was submitted!</h2>
       <h3>Thank you for shopping with us!</h3>
     </div>
   )

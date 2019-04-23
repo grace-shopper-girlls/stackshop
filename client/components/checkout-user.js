@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {submitOrder} from '../store'
 // import CheckoutButton from './checkout-button'
 
@@ -26,12 +26,15 @@ class CheckoutUser extends React.Component {
       buyerName: '',
       shippingAddress: '',
       email: '',
-      order: {},
+      order: {
+        buyerName: '',
+        shippingAddress: '',
+        email: ''
+      },
       orderItems: [],
       checkingOut: false
     })
-
-    // <Link to="/order-confirmation" />
+    this.props.history.push('/order-confirmation')
   }
 
   handleChange(event) {
@@ -48,21 +51,21 @@ class CheckoutUser extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="buyerName">Full Name:</label>
           <input
-            value={this.state.buyerName}
+            value={this.state.order.buyerName}
             type="text"
             name="buyerName"
             onChange={this.handleChange}
           />
           <label htmlFor="shipping-address">Shipping Address:</label>
           <input
-            value={this.state.shippingAddress}
+            value={this.state.order.shippingAddress}
             type="text"
             name="shippingAddress"
             onChange={this.handleChange}
           />
           <label htmlFor="email">Email:</label>
           <input
-            value={this.state.email}
+            value={this.state.order.email}
             type="text"
             name="email"
             onChange={this.handleChange}
@@ -70,7 +73,7 @@ class CheckoutUser extends React.Component {
           <button
             type="submit"
             onClick={() => {
-              submitOrder(this.state)
+              submitOrder()
             }}
           >
             Submit Order
@@ -93,7 +96,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-  submitOrder: userDetails => dispatch(submitOrder(this.state))
+  submitOrder: () => dispatch(submitOrder())
 })
 
 export default connect(mapState, mapDispatch)(CheckoutUser)
