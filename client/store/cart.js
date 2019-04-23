@@ -38,7 +38,6 @@ export const fetchCart = userId => {
     try {
       if (typeof userId !== 'number') {
         const {data} = await axios.get(`/api/users/${userId}`)
-        console.log('data ID ', data.id)
         newUserId = data.id
       }
       dispatch(gettingCart())
@@ -58,7 +57,6 @@ export const setCartQuantity = quantity => {
 }
 
 export const addToCartThunk = (cart, fruit, quantitySelected) => {
-  console.log('add to cart thunk reached')
   return async dispatch => {
     try {
       let newOrderItem = {
