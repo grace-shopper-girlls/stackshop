@@ -1,11 +1,16 @@
 import axios from 'axios'
 
-const GET_CART = 'GET_CART'
+const GETTING_CART = 'GETTING_CART'
+const GOT_CART = 'GOT_CART'
 const SET_QUANTITY = 'SET_QUANTITY'
 const ADD_TO_CART = 'ADD_TO_CART'
 
-const getCart = cart => ({
-  type: GET_CART,
+const gettingCart = () => ({
+  type: GETTING_CART
+})
+
+const gotCart = cart => ({
+  type: GOT_CART,
   cart
 })
 
@@ -20,16 +25,18 @@ const addToCart = data => ({
 })
 
 let initialState = {
-  cart: {id: 1, subtotal: 4.56, grandTotal: 6.0},
+  cart: {},
   cartItems: [],
-  quantitySelected: 1
+  quantitySelected: 1,
+  loading: true
 }
 
 export const fetchCart = userId => {
   return async dispatch => {
     try {
+      dispatch(gettingCart())
       const {data} = await axios.get(`/api/orders/${userId}`)
-      dispatch(getCart(data[0]))
+      dispatch(gotCart(data.order[0]))
     } catch (error) {
       console.log(error)
     }
@@ -53,6 +60,7 @@ export const addToCartThunk = (cart, fruit, quantitySelected) => {
         price: quantitySelected * fruit.price
       }
       const {data} = await axios.post('/api/order-items', newOrderItem)
+
       dispatch(addToCart(data))
     } catch (error) {
       console.log(error)
@@ -62,8 +70,14 @@ export const addToCartThunk = (cart, fruit, quantitySelected) => {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_CART:
-      return {...state, cart: action.cart}
+    case GETTING_CART:
+      return {...state, loading: true}
+    case GOT_CART:
+      return {
+        ...state,
+        loading: false,
+        cart: action.cart
+      }
     case ADD_TO_CART:
       return {
         ...state,
