@@ -125,3 +125,14 @@ form div {
 .fruit-price {
   text-align: left;
 }
+
+#checkout {
+  display: flex;
+  /* text-align: right; */
+}
+
+#checkout-user,
+#checkout-cart {
+  display: flex;
+  text-align: left;
+}
