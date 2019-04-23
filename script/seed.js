@@ -48,7 +48,7 @@ const fruits = [
     price: 6.7,
     description: 'A refreshing summer fruit!',
     imageUrl:
-      'https://images.pexels.com/photos/1313267/pexels-photo-1313267.jpeg?cs=srgb&dl=food-fruit-green-1313267.jpg&fm=jpg',
+      'https://newschoolselling.com/wp-content/uploads/2017/08/watermelons-1030x824.jpg',
     quantity: 11
   },
   {
