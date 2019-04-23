@@ -74,7 +74,7 @@ class CheckoutUser extends React.Component {
           <button
             type="submit"
             onClick={() => {
-              submitOrder()
+              submitOrder(this.props.cart.id)
             }}
           >
             Submit Order
@@ -90,7 +90,7 @@ const mapState = state => {
     // user: state.user,
     // buyerName: `state.user.firstName state.user.lastName`,
     // shippingAddress: state.user.address,
-    // order: state.order,
+    cart: state.cart,
     // orderItems: state.order.orderItems,
     checkingOut: state.cart.checkingOut
     // history: ownProps.history
@@ -98,7 +98,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-  submitOrder: () => dispatch(submitOrder())
+  submitOrder: id => dispatch(submitOrder(id))
 })
 
 export default connect(mapState, mapDispatch)(CheckoutUser)

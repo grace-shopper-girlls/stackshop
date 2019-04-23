@@ -30,7 +30,7 @@ const checkingOut = () => ({
   type: CHECKING_OUT
 })
 
-const submittingOrder = (user) => ({
+const submittingOrder = user => ({
   type: SUBMITTING_ORDER,
   user
 })
@@ -96,10 +96,11 @@ export const checkOut = () => {
   }
 }
 
-export const submitOrder = () => {
-    return dispatch => {
-      dispatch(orderSubmitted())
-    }
+export const submitOrder = orderId => {
+  return async dispatch => {
+    await axios.put(`/api/orders/${orderId}`, {data: {orderSubmitted: true}})
+    dispatch(orderSubmitted())
+  }
 }
 
 export default function(state = initialState, action) {
@@ -128,7 +129,13 @@ export default function(state = initialState, action) {
       return {...state, cart: action.cart}
 
     case ORDER_SUBMITTED:
-      return {...state, cart: {}, cartItems: [], loading: true, checkingOut: false}
+      return {
+        ...state,
+        cart: {},
+        cartItems: [],
+        loading: true,
+        checkingOut: false
+      }
 
     default:
       return state
