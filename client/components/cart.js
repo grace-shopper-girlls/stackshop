@@ -35,11 +35,10 @@ class Cart extends React.Component {
       <div id="cart-wrapper">
         <h1>Cart</h1>
         <div id="cart-totals">
-          <p>Subtotal: {cart.subtotal}</p>
-          <p>Shipping: {cart.shippingCost}</p>
-          <p>Grand Total: {cart.grandTotal}</p>
+          <p>Subtotal: {subTotal}</p>
+          <p>Shipping: {shippingCost}</p>
+          <p>Grand Total: {grandTotal}</p>
         </div>
-
 
         <h1 div id="cart-items">
           Items
@@ -53,7 +52,7 @@ class Cart extends React.Component {
           return <CartItem key={item.fruitId} item={item} fruits={fruits} />
         })}
 
-<CheckoutButton />
+        <CheckoutButton />
         {this.props.checkingOut ? (
           <CheckoutForm history={this.props.history} />
         ) : (
