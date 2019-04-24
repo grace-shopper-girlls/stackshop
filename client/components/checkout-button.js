@@ -5,7 +5,7 @@ import {checkOut} from '../store'
 const CheckoutButton = props => {
   return (
     <div>
-      <button
+      <button id="checkout-button"
         type="submit"
         onClick={() => {
           props.checkOut()

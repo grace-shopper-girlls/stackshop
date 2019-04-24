@@ -3,6 +3,7 @@ import DeleteCartItem from './cart-item-delete'
 import {connect} from 'react-redux'
 import {fetchFruit} from '../store'
 import Loading from './loading'
+import {formatPrice} from '../../utils'
 
 class CartItem extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class CartItem extends React.Component {
           <img className="cartThumbnail" src={fruit.imageUrl} />
           <h3>{fruit.name}</h3>
           <p>quantity: {item.quantity}</p>
-          <p>total price: {item.price}</p>
+          <p>total price: {formatPrice(item.price)}</p>
           <DeleteCartItem id={item.fruitId} />
         </div>
       )

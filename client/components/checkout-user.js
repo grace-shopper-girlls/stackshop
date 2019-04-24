@@ -44,37 +44,54 @@ class CheckoutUser extends React.Component {
   render() {
     return (
       <div id="checkout-user">
-        <h1>Buyer Information</h1>
+        <h3>Buyer Information</h3>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="buyerName">Full Name:</label>
-          <input
-            value={this.state.order.buyerName}
-            type="text"
-            name="buyerName"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="shipping-address">Shipping Address:</label>
-          <input
-            value={this.state.order.shippingAddress}
-            type="text"
-            name="shippingAddress"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="email">Email:</label>
-          <input
-            value={this.state.order.email}
-            type="text"
-            name="email"
-            onChange={this.handleChange}
-          />
-          <button
-            type="submit"
-            onClick={() => {
-              submitOrder(this.props.cart.id)
-            }}
-          >
-            Submit Order
-          </button>
+          <div>
+            <label htmlFor="buyerName">
+              <small>Full Name:</small>
+            </label>
+            <input
+              value={this.state.order.buyerName}
+              type="text"
+              name="buyerName"
+              onChange={this.handleChange}
+            />
+          </div>
+          <br />
+          <div>
+            <label htmlFor="shipping-address">
+              <small>Shipping Address:</small>
+            </label>
+            <input
+              value={this.state.order.shippingAddress}
+              type="text"
+              name="shippingAddress"
+              onChange={this.handleChange}
+            />
+          </div>
+          <br />
+          <div>
+            <label htmlFor="email">
+              <small>Email:</small>
+            </label>
+            <input
+              value={this.state.order.email}
+              type="text"
+              name="email"
+              onChange={this.handleChange}
+            />
+          </div>
+          <br />
+          <div>
+            <button
+              type="submit"
+              onClick={() => {
+                submitOrder(this.props.cart.id)
+              }}
+            >
+              Submit Order
+            </button>
+          </div>
         </form>
       </div>
     )

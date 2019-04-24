@@ -126,6 +126,7 @@ h2 {
 #checkout-user,
 #checkout-cart {
   display: flex;
+  flex-direction: column;
   text-align: left;
 }
 
@@ -144,6 +145,7 @@ form input {
 }
 
 form button,
+#checkout-button,
 #google {
   margin-top: 16px;
   margin-bottom: 16px;
