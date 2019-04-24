@@ -22,13 +22,18 @@ class Cart extends React.Component {
     return loading ? (
       <Loading />
     ) : (
-      <div>
+      <div id="cart-wrapper">
         <h1>Cart</h1>
-        <p>Subtotal: {cart.subtotal}</p>
-        <p>Shipping: {cart.shippingCost}</p>
-        <p>Grand Total: {cart.grandTotal}</p>
+        <div id="cart-totals">
+          <p>Subtotal: {cart.subtotal}</p>
+          <p>Shipping: {cart.shippingCost}</p>
+          <p>Grand Total: {cart.grandTotal}</p>
+        </div>
 
-        <h1>Items</h1>
+
+        <h1 div id="cart-items">
+          Items
+        </h1>
         {!cartItems.length ? (
           <p>Cart is empty</p>
         ) : (
@@ -37,7 +42,8 @@ class Cart extends React.Component {
         {cartItems.map(item => {
           return <CartItem key={item.fruitId} item={item} fruits={fruits} />
         })}
-        <CheckoutButton />
+
+<CheckoutButton />
         {this.props.checkingOut ? (
           <CheckoutForm history={this.props.history} />
         ) : (
