@@ -132,7 +132,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        cart: action.cart
+        cart: action.cart,
+        cartItems: action.cart.orderItems
       }
     case ADD_TO_CART:
       return {
